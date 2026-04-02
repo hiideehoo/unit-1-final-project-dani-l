@@ -1,8 +1,75 @@
 import { useState, useEffect } from 'react'
-import Menu from '../src/assets/Menu.jsx'
-import Player from '../src/assets/Player.jsx'
-import Map from '../src/assets/Map.jsx'
 import './App.css'
+
+
+function Map() {
+
+    return (
+        <div>
+          <div className="hlt"/>
+          <div className="vll"/>
+          <div className="vlr"/>
+          <div className="hlb"/>
+        </div>
+    )
+}
+
+
+
+let player = {
+  inventory: ["apple", "shield"],
+  hitPoints: 1,
+  damage: 1,
+  silver: 100,
+  Player: function({ latitude, longitude, nameChange, colorChange }) {return (
+        <div className="box" id="player" style={{width: "20px", height: "20px", backgroundColor: colorChange, padding: "10px", margin: "10px", position: "absolute", top: latitude + "px", left: longitude + "px", fontSize: 13 - nameChange.length}} tabIndex="0">
+            {nameChange}
+        </div>
+    )}
+}
+
+if (player.inventory.includes('shield') === true) {player.hitPoints += 4;}
+if (player.inventory.includes('sword') === true) {player.damage += 4;}
+
+
+function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleColorChange }) {
+
+function displayInv(inv) {
+  return (`${inv.join(', ')}`);
+}
+
+    return (
+
+        <div className="box" id="profile" style={{ visibility: showProfile }} tabIndex="0">
+            <input type="text" id="nameSelect" name="nameSelect" placeholder="name" value={nameChange} onChange={handleNameChange}></input>
+            <br />
+            <select id="skinSelect" name="skinSelect" value={colorChange} onChange={handleColorChange}>
+                <option value="lawngreen">Green</option>
+                <option value="orange">Orange</option>
+                <option value="cyan">Blue</option>
+            </select>
+            <div className="box" id="playerSprite" style={{ width: "40px", height: "40px", backgroundColor: colorChange, padding: "10px", margin: "10px", position: "absolute", top: "20px", left: "430px", fontSize: 20 - (nameChange.length * 1.75) }}>{nameChange}</div>
+            <br></br>
+            <br></br>
+            <div style={{color: "white", textAlign: "left"}}>
+              <h3>Stats</h3>
+              HP: {player.hitPoints}
+              <br></br>
+              DMG: {player.damage}
+              <br></br>
+              Silver: ₵{player.silver}
+            </div>
+            <br></br>
+            <br></br>
+            <div style={{color: "white", textAlign: "left"}}>
+              <h3>Inventory</h3>
+              {displayInv(player.inventory)}
+            </div>
+            
+        </div>
+    )
+}
+
 
 function App() {
 
@@ -24,16 +91,18 @@ function App() {
       }
 
         if (event.key === "Escape") {
-          if (showProfile === "hidden") {setShowProfile("visible");} else if (showProfile === "visible") {setShowProfile("hidden");}
+          setShowProfile(prev =>
+            prev === "hidden" ? "visible" : "hidden"
+          );
         }
     };
 
     useEffect(() => {
-      document.addEventListener('keydown', keyDown);
+      window.addEventListener('keydown', keyDown);
 
-      return function cleanup() {
-      document.removeEventListener('keydown', keyDown);
-      }
+      return (() => {
+      window.removeEventListener('keydown', keyDown);
+      })
     });
 
 
@@ -50,9 +119,9 @@ function App() {
   return (
     <>
       <div>
-        <Player latitude={latitude} longitude={longitude} keyDown={keyDown} nameChange={nameChange} colorChange={colorChange}/>
+        <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange}/>
         <Map/>
-        <Menu showProfile={showProfile} keyDown={keyDown} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange}/>
+        <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange}/>
       </div>
     </>
   )
