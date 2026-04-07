@@ -2,38 +2,37 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 class Item {
-  constructor(name, value, vis, coords) {
+  constructor(name, value, vis, reach, coords) {
     this.name = name;
     this.value = value;
     this.vis = vis;
+    this.reach = reach;
     this.coords = coords;
   }
 }
 
 let items = {
-  ball: new Item("ball", 300, "visible", [100, 100])
+  shield: new Item("shield", 300, "visible", false, [100, 100])
 }
 
-function Inventory() {
+function Inventory({ entity }) {
 
   return (
     <div>
-      <div className="dot" style={{ visibility: items.ball.vis, left: `${items.ball.coords[0]}px`, top: `${items.ball.coords[1]}px` }} />
+      <div className="dot" style={{ visibility: items[entity].vis, left: `${items[entity].coords[0]}px`, top: `${items[entity].coords[1]}px` }} />
     </div>
   )
 }
 
-function Interaction({ latitude, longitude }) {
-    if (!(latitude > (items.ball.coords[1] - 50) && 
-    latitude < (items.ball.coords[1] + 50) && 
-    longitude > (items.ball.coords[0] - 50) && 
-    longitude < (items.ball.coords[0] + 50))) {
+function Interaction({ latitude, longitude, entity }) {
+    if (!(((((longitude-items[entity].coords[0]+20)**2)+((latitude-items[entity].coords[1]+20)**2))**0.5) < 50)) {
       return null;
     }
 
       return (
+
         <div>
-          <p style={{ position: "absolute", left: `${items.ball.coords[0]-35}px`, top: `${items.ball.coords[1]+35}px` }}>[space] collect</p>
+          <p style={{ position: "absolute", left: `${items[entity].coords[0]-35}px`, top: `${items[entity].coords[1]+35}px` }}>[space] collect</p>
         </div>
       )
     }
@@ -177,10 +176,10 @@ function App() {
   return (
     <>
       <div>
-        <Inventory/>
+        <Inventory entity="shield"/>
         <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
         <Map latitude={latitude} longitude={longitude} />
-        <Interaction latitude={latitude} longitude={longitude}/>
+        <Interaction latitude={latitude} longitude={longitude} entity="shield"/>
         <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} />
       </div>
     </>
