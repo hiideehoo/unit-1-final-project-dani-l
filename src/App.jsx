@@ -1,6 +1,36 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+class Item {
+  constructor(name, value, vis, coords) {
+    this.name = name;
+    this.value = value;
+    this.vis = vis;
+    this.coords = coords;
+  }
+}
+
+let items = {
+  ball: new Item("ball", 300, "visible", [100, 100])
+}
+
+function Inventory({ latitude, longitude }) {
+
+if (latitude > (items.ball.coords[1]-50) && latitude < (items.ball.coords[1]+50) && longitude > (items.ball.coords[0]-50) && longitude < (items.ball.coords[0]+50)) {
+  
+  return (
+  <div>
+    <div style={{left: `400px`, top: `400px`}}>[space] collect</div>
+  </div>
+  )
+}
+
+  return (
+    <div>
+       <div className="dot" style={{visibility: items.ball.vis, left: `${items.ball.coords[0]}px`, top: `${items.ball.coords[1]}px`}}/>
+    </div>
+  )
+}
 class Border {
     constructor(width, height, x, y) {
         this.width = width;
@@ -138,6 +168,7 @@ function App() {
   return (
     <>
       <div>
+        <Inventory latitude={latitude} longitude={longitude}/>
         <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange}/>
         <Map latitude={latitude} longitude={longitude}/>
         <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange}/>
