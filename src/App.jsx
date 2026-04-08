@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import Map from '../src/assets/Map'
+import Map from '../src/assets/Map.jsx'
+import Menu from '../src/assets/Menu.jsx'
 import './App.css'
 
 class Item {
@@ -76,46 +77,7 @@ let player = {
   }
 }
 
-function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleColorChange }) {
 
-  function displayHP() {return (`${player.hitPoints}`)}
-  function displayDMG() {return (`${player.damage}`)}
-  function display$() {return (`${player.silver}`)}
-  function displayInv() {
-    return (`${player.inventory.join(', ')}`);
-  }
-
-  return (
-
-    <div className="box" id="profile" style={{ visibility: showProfile }} tabIndex="0">
-      <input type="text" id="nameSelect" name="nameSelect" placeholder="name" value={nameChange} onChange={handleNameChange}></input>
-      <br />
-      <select id="skinSelect" name="skinSelect" value={colorChange} onChange={handleColorChange}>
-        <option value="lawngreen">Green</option>
-        <option value="orange">Orange</option>
-        <option value="cyan">Blue</option>
-      </select>
-      <div className="box" id="playerSprite" style={{ width: "40px", height: "40px", backgroundColor: colorChange, padding: "10px", margin: "10px", position: "absolute", top: "20px", left: "430px", fontSize: 20 - (nameChange.length * 1.75) }}>{nameChange}</div>
-      <br></br>
-      <br></br>
-      <div style={{ color: "white", textAlign: "left" }}>
-        <h3>Stats</h3>
-        HP: {displayHP()}
-        <br></br>
-        DMG: {displayDMG()}
-        <br></br>
-        Silver: ₵{display$()}
-      </div>
-      <br></br>
-      <br></br>
-      <div style={{ color: "white", textAlign: "left" }}>
-        <h3>Inventory</h3>
-        {displayInv()}
-      </div>
-
-    </div>
-  )
-}
 
 
 function App() {
@@ -188,7 +150,7 @@ function App() {
         <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
         <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
         <Interaction latitude={latitude} longitude={longitude} entity="shield" />
-        <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} />
+        <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} player={player}/>
       </div>
     </>
   )
