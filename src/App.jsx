@@ -4,39 +4,32 @@ import Menu from '../src/assets/Menu.jsx'
 import './App.css'
 
 class Item {
-  constructor(name, value, vis, reach, coords) {
+  constructor(name, className, value, vis, coords) {
     this.name = name;
+    this.className = className;
     this.value = value;
     this.vis = vis;
-    this.reach = reach;
     this.coords = coords;
   }
 }
 
 let items = {
-  shield: new Item("shield", 300, "visible", false, [100, 100])
+  shield: new Item("shield", "dot", 300, "", [100, 100])
 }
 
-function Inventory({ entity }) {
+function ItemInteraction({ latitude, longitude, entity }) {
 
-  return (
-    <div>
-      <div className="dot" style={{ visibility: items[entity].vis, left: `${items[entity].coords[0]}px`, top: `${items[entity].coords[1]}px` }} />
-    </div>
-  )
-}
-
-function Interaction({ latitude, longitude, entity }) {
-
+  const [entityVis, setEntityVis] = useState("visible");
+  items[entity].vis = entityVis;
   const radius = ((((longitude - items[entity].coords[0] + 20) ** 2) + ((latitude - items[entity].coords[1] + 20) ** 2)) ** 0.5);
   const inRange = (radius < 50) && (items[entity].vis === "visible");
+
   const keyDown = (event) => {
     if (inRange) {
       if (event.key === " ") {
-        items[entity].vis = "hidden";
-        player.inventory.push(entity);
-          if (entity === "shield") {player.hitPoints += 4;}
-          if (entity === "sword") {player.hitPoints += 4;}
+        setEntityVis(prev => prev === "hidden");
+          if (entity === "shield") {player.hitPoints += 4; player.inventory.push(entity);}
+          if (entity === "sword") {player.hitPoints += 4; player.inventory.push(entity);}
       }
     }
   }
@@ -49,12 +42,29 @@ function Interaction({ latitude, longitude, entity }) {
     })
   })
 
-  if (!inRange) {return null;}
+  function Inventory({entity}) {
+    if (entityVis === "visible") {
+      return (
+        <div>
+          <div className={items[entity].className} style={{ visibility: entityVis, left: `${items[entity].coords[0]}px`, top: `${items[entity].coords[1]}px` }} />
+        </div>
+      )
+    }
+  }
+  function Popup({ entity }) {
+    if (inRange) {
+      return (
+        <div>
+          <p style={{ position: "absolute", left: `${items[entity].coords[0] - 35}px`, top: `${items[entity].coords[1] + 35}px` }}>[space] collect</p>
+        </div>
+      )
+    }
+  }
 
   return (
-
     <div>
-      <p style={{ position: "absolute", left: `${items[entity].coords[0] - 35}px`, top: `${items[entity].coords[1] + 35}px` }}>[space] collect</p>
+      <Inventory entity={entity} />
+      <Popup entity={entity} />
     </div>
   )
 }
@@ -70,7 +80,7 @@ let player = {
   silver: 100,
   Player: function ({ latitude, longitude, nameChange, colorChange }) {
     return (
-      <div className="box" id="player" style={{ width: "20px", height: "20px", backgroundColor: colorChange, padding: "10px", margin: "10px", position: "absolute", top: latitude + "px", left: longitude + "px", fontSize: 13 - nameChange.length }} tabIndex="0">
+      <div className="box" id="player" style={{ width: "20px", height: "20px", backgroundColor: colorChange, padding: "10px", margin: "10px", position: "absolute", top: latitude + "px", left: longitude + "px", fontSize: 13 - nameChange.length }}>
         {nameChange}
       </div>
     )
@@ -103,6 +113,9 @@ function App() {
   const [latitude, setLatitude] = useState(20);
   const [longitude, setLongitude] = useState(480);
   const [showProfile, setShowProfile] = useState("hidden");
+  const [nameChange, setNameChange] = useState("");
+  const [colorChange, setColorChange] = useState("cyan");
+
   const keyDown = (event) => {
 
     if (showProfile === "hidden") {
@@ -132,10 +145,6 @@ function App() {
     })
   });
 
-
-  const [nameChange, setNameChange] = useState("");
-  const [colorChange, setColorChange] = useState("cyan");
-
   function handleNameChange(e) {
     setNameChange(e.target.value);
   }
@@ -146,10 +155,9 @@ function App() {
   return (
     <>
       <div>
-        <Inventory entity="shield" />
+        <ItemInteraction latitude={latitude} longitude={longitude} entity="shield" />
         <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
         <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
-        <Interaction latitude={latitude} longitude={longitude} entity="shield" />
         <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} player={player}/>
       </div>
     </>
