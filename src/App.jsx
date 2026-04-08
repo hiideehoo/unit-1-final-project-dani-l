@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Map from '../src/assets/Map'
 import './App.css'
 
 class Item {
@@ -57,37 +58,7 @@ function Interaction({ latitude, longitude, entity }) {
   )
 }
 
-class Border {
-  constructor(width, height, x, y) {
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
-  }
-}
 
-let borderCollision = {
-  room1: {
-    west: new Border(10, 500, 0, 0),
-    east: new Border(10, 500, 500, 0),
-    north: new Border(500, 10, 0, 0),
-    south: new Border(500, 10, 0, 500)
-  }
-}
-
-function Map() {
-
-  let bound1 = borderCollision.room1
-
-  return (
-    <div>
-      <div id="westWall" className="room1" style={{ width: `${bound1.west.width}px`, height: `${bound1.west.height + 50}px`, left: `${bound1.west.x}px`, top: `${bound1.west.y}px` }} />
-      <div id="eastWall" className="room1" style={{ width: `${bound1.east.width}px`, height: `${bound1.east.height + 50}px`, left: `${bound1.east.x + 50}px`, top: `${bound1.east.y}px` }} />
-      <div id="northWall" className="room1" style={{ width: `${bound1.north.width + 50}px`, height: `${bound1.north.height}px`, left: `${bound1.north.x}px`, top: `${bound1.north.y}px` }} />
-      <div id="southWall" className="room1" style={{ width: `${bound1.south.width + 60}px`, height: `${bound1.south.height}px`, left: `${bound1.south.x}px`, top: `${bound1.south.y + 50}px` }} />
-    </div>
-  )
-}
 
 
 
@@ -149,6 +120,24 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
 
 function App() {
 
+  class Border {
+    constructor(width, height, x, y) {
+      this.width = width;
+      this.height = height;
+      this.x = x;
+      this.y = y;
+    }
+  }
+
+  const borderCollision = {
+    room1: {
+      west: new Border(10, 500, 0, 0),
+      east: new Border(10, 500, 500, 0),
+      north: new Border(500, 10, 0, 0),
+      south: new Border(500, 10, 0, 500)
+    }
+  }
+
   const [latitude, setLatitude] = useState(20);
   const [longitude, setLongitude] = useState(480);
   const [showProfile, setShowProfile] = useState("hidden");
@@ -197,7 +186,7 @@ function App() {
       <div>
         <Inventory entity="shield" />
         <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
-        <Map latitude={latitude} longitude={longitude} />
+        <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
         <Interaction latitude={latitude} longitude={longitude} entity="shield" />
         <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} />
       </div>
