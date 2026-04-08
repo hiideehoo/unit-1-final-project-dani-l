@@ -25,18 +25,38 @@ function Inventory({ entity }) {
 }
 
 function Interaction({ latitude, longitude, entity }) {
-    if (!(((((longitude-items[entity].coords[0]+20)**2)+((latitude-items[entity].coords[1]+20)**2))**0.5) < 50)) {
-      return null;
-    }
 
-      return (
-
-        <div>
-          <p style={{ position: "absolute", left: `${items[entity].coords[0]-35}px`, top: `${items[entity].coords[1]+35}px` }}>[space] collect</p>
-        </div>
-      )
+  const radius = ((((longitude - items[entity].coords[0] + 20) ** 2) + ((latitude - items[entity].coords[1] + 20) ** 2)) ** 0.5);
+  const inRange = (radius < 50) && (items[entity].vis === "visible");
+  const keyDown = (event) => {
+    if (inRange) {
+      if (event.key === " ") {
+        items[entity].vis = "hidden";
+        player.inventory.push(entity);
+          if (entity === "shield") {player.hitPoints += 4;}
+          if (entity === "sword") {player.hitPoints += 4;}
+      }
     }
-  
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', keyDown);
+
+    return (() => {
+      window.removeEventListener('keydown', keyDown);
+    })
+  })
+
+  if (!inRange) {return null;}
+
+  return (
+
+    <div>
+      <p style={{ position: "absolute", left: `${items[entity].coords[0] - 35}px`, top: `${items[entity].coords[1] + 35}px` }}>[space] collect</p>
+    </div>
+  )
+}
+
 class Border {
   constructor(width, height, x, y) {
     this.width = width;
@@ -72,7 +92,7 @@ function Map() {
 
 
 let player = {
-  inventory: ["apple", "shield"],
+  inventory: ["apple"],
   hitPoints: 1,
   damage: 1,
   silver: 100,
@@ -85,14 +105,13 @@ let player = {
   }
 }
 
-if (player.inventory.includes('shield') === true) { player.hitPoints += 4; }
-if (player.inventory.includes('sword') === true) { player.damage += 4; }
-
-
 function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleColorChange }) {
 
-  function displayInv(inv) {
-    return (`${inv.join(', ')}`);
+  function displayHP() {return (`${player.hitPoints}`)}
+  function displayDMG() {return (`${player.damage}`)}
+  function display$() {return (`${player.silver}`)}
+  function displayInv() {
+    return (`${player.inventory.join(', ')}`);
   }
 
   return (
@@ -110,17 +129,17 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
       <br></br>
       <div style={{ color: "white", textAlign: "left" }}>
         <h3>Stats</h3>
-        HP: {player.hitPoints}
+        HP: {displayHP()}
         <br></br>
-        DMG: {player.damage}
+        DMG: {displayDMG()}
         <br></br>
-        Silver: ₵{player.silver}
+        Silver: ₵{display$()}
       </div>
       <br></br>
       <br></br>
       <div style={{ color: "white", textAlign: "left" }}>
         <h3>Inventory</h3>
-        {displayInv(player.inventory)}
+        {displayInv()}
       </div>
 
     </div>
@@ -176,10 +195,10 @@ function App() {
   return (
     <>
       <div>
-        <Inventory entity="shield"/>
+        <Inventory entity="shield" />
         <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
         <Map latitude={latitude} longitude={longitude} />
-        <Interaction latitude={latitude} longitude={longitude} entity="shield"/>
+        <Interaction latitude={latitude} longitude={longitude} entity="shield" />
         <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} />
       </div>
     </>
