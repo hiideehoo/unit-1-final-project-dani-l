@@ -14,7 +14,7 @@ let items = {
 
 
 
-function ItemInteraction({ latitude, longitude, entity, setHPStatus, setDMGStatus, setInvStatus }) {
+function ItemInteraction({ latitude, longitude, entity, setHpStatus, setDmgStatus, setInvStatus }) {
 
   const [entityVis, setEntityVis] = useState("visible");
   items[entity].vis = entityVis;
@@ -25,8 +25,9 @@ function ItemInteraction({ latitude, longitude, entity, setHPStatus, setDMGStatu
     if (inRange) {
       if (event.key === " ") {
         setEntityVis(prev => prev === "hidden");
-          if (entity === "shield") {setHPStatus(prev => prev + 4); setInvStatus(prev => [...prev, entity]);}
-          if (entity === "sword") {setDMGStatus(prev => prev + 4); setInvStatus(prev => [...prev, entity]);}
+        setInvStatus(prev => [...prev, entity]);
+          if (entity === "shield") {setHpStatus(prev => prev + 4);}
+          if (entity === "sword") {setDmgStatus(prev => prev + 4);}
       }
     }
   }
@@ -39,7 +40,7 @@ function ItemInteraction({ latitude, longitude, entity, setHPStatus, setDMGStatu
     })
   })
 
-  function Inventory({entity}) {
+  function Placement({entity}) {
     if (entityVis === "visible") {
       return (
         <div>
@@ -60,7 +61,7 @@ function ItemInteraction({ latitude, longitude, entity, setHPStatus, setDMGStatu
 
   return (
     <div>
-      <Inventory entity={entity} />
+      <Placement entity={entity} />
       <Prompt entity={entity} />
     </div>
   )

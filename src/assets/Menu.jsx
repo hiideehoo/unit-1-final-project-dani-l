@@ -1,8 +1,8 @@
-function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleColorChange, hPStatus, dMGStatus, $Status, invStatus }) {
+function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleColorChange, hpStatus, dmgStatus, silverStatus, invStatus }) {
 
-  function displayHP() {return hPStatus}
-  function displayDMG() {return dMGStatus}
-  function display$() {return $Status}
+  function displayHP() {return hpStatus}
+  function displayDMG() {return dmgStatus}
+  function display$() {return silverStatus}
   function displayInv() {
     return (`${invStatus.join(', ')}`);
   }
@@ -17,19 +17,19 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
         <option value="orange">Orange</option>
         <option value="cyan">Blue</option>
       </select>
-      <div className="box" id="playerSprite" style={{ width: "40px", height: "40px", backgroundColor: colorChange, padding: "10px", margin: "10px", position: "absolute", top: "20px", left: "430px", fontSize: 20 - (nameChange.length * 1.5) }}>{nameChange}</div>
-      <br></br>
-      <br></br>
+      <div className="box" id="playerSprite" style={{ width: "40px", height: "40px", backgroundColor: colorChange, top: "20px", left: "430px", fontSize: 20 - (nameChange.length * 1.5) }}>{nameChange}</div>
+      <br />
+      <br />
       <div style={{ color: "white", textAlign: "left" }}>
         <h3>Stats</h3>
         HP: {displayHP()}
-        <br></br>
+        <br />
         DMG: {displayDMG()}
-        <br></br>
+        <br />
         Silver: ₵{display$()}
       </div>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <div style={{ color: "white", textAlign: "left" }}>
         <h3>Inventory</h3>
         {displayInv()}

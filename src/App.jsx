@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import Map from '../src/assets/Map.jsx'
 import Menu from '../src/assets/Menu.jsx'
-import ItemInteraction from './assets/Player.jsx'
+import ItemInteraction from './assets/Entity.jsx'
+import NpcInteraction from './assets/Npc.jsx'
 import './App.css'
 
 function App() {
@@ -11,9 +12,9 @@ function App() {
   const [showProfile, setShowProfile] = useState("hidden");
   const [nameChange, setNameChange] = useState("");
   const [colorChange, setColorChange] = useState("cyan");
-  const [hPStatus, setHPStatus] = useState(1);
-  const [dMGStatus, setDMGStatus] = useState(1);
-  const [$Status, set$Status] = useState(100);
+  const [hpStatus, setHpStatus] = useState(1);
+  const [dmgStatus, setDmgStatus] = useState(1);
+  const [silverStatus, setSilverStatus] = useState(100);
   const [invStatus, setInvStatus] = useState(["apple"]);
 
   const keyDown = (event) => {
@@ -74,12 +75,12 @@ function App() {
 
   let player = {
   inventory: invStatus,
-  hitPoints: hPStatus,
-  damage: dMGStatus,
-  silver: $Status,
+  hitPoints: hpStatus,
+  damage: dmgStatus,
+  silver: silverStatus,
   Player: function ({ latitude, longitude, nameChange, colorChange }) {
     return (
-      <div className="box" id="player" style={{ width: "20px", height: "20px", backgroundColor: colorChange, padding: "10px", margin: "10px", position: "absolute", top: latitude + "px", left: longitude + "px", fontSize: 13 - nameChange.length }}>
+      <div className="box" id="player" style={{ backgroundColor: colorChange, top: latitude + "px", left: longitude + "px", fontSize: 13 - nameChange.length }}>
         {nameChange}
       </div>
     )
@@ -89,10 +90,11 @@ function App() {
   return (
     <>
       <div>
-        <ItemInteraction latitude={latitude} longitude={longitude} entity="shield" setDMGStatus={setDMGStatus} setInvStatus={setInvStatus} setHPStatus={setHPStatus}/>
+        <ItemInteraction latitude={latitude} longitude={longitude} entity="shield" setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
+        <NpcInteraction latitude={latitude} longitude={longitude} entity="harold" setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
         <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
         <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
-        <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hPStatus={hPStatus} dMGStatus={dMGStatus} $Status={$Status} invStatus={invStatus}/>
+        <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hpStatus={hpStatus} dmgStatus={dmgStatus} silverStatus={silverStatus} invStatus={invStatus}/>
       </div>
     </>
   )

@@ -22,3 +22,11 @@
   display: inline-block;
   position: absolute;
 }
+
+.box {
+   width: 20px;
+   height: 20px;
+   padding: 10px;
+   margin: 10px;
+   position: absolute;
+}
