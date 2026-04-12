@@ -1,11 +1,18 @@
 function FrontPage({ setStartGame }) {
 
-    const button = <button id="begin" onClick={() => 
+    const begin = <button id="begin" onClick={() => 
         setStartGame("true")
     }>BEGIN</button>
+    const about = <button id="about" onClick={() => 
+        setVisitAbout("true")
+    }>ABOUT</button>
 
     return (
-        button
+        <div>
+            {begin}
+            <br />
+            {about}
+        </div>
     )
 }
 

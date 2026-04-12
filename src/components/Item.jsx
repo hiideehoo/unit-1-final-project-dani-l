@@ -19,7 +19,7 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
   const [entityVis, setEntityVis] = useState("visible");
   items[entity].vis = entityVis;
   const radius = ((((longitude - location[0] + 20) ** 2) + ((latitude - location[1] + 20) ** 2)) ** 0.5);
-  const inRange = (radius < 50) && (items[entity].vis === "visible");
+  const inRange = (radius < 60) && (items[entity].vis === "visible");
 
   const keyDown = (event) => {
     if (inRange) {
@@ -39,8 +39,6 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
       window.removeEventListener('keydown', keyDown);
     })
   })
-
-  // entity.addEventListener('hover', )
 
   function Placement({entity}) {
     if (entityVis === "visible") {

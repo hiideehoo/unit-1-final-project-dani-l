@@ -17,6 +17,7 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
         <div style={{ color: "white" }}>
             <h3>Stats</h3>
             <table border="1" style={{  textAlign: "center", width: "40%" }}>
+              <tbody>
                 <tr>
                     <th>HP</th>
                     <th>DMG</th>
@@ -27,6 +28,7 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
                     <td>{dmgStatus}</td>
                     <td>{silverStatus}₵</td>
                 </tr>
+              </tbody>
             </table>
         </div>
 

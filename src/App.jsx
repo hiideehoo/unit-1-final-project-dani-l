@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import FrontPage from './assets/FrontPage.jsx'
-import Map from '../src/assets/Map.jsx'
-import Menu from '../src/assets/Menu.jsx'
-import ItemInteraction from './assets/Entity.jsx'
-import NpcInteraction from './assets/Npc.jsx'
+import FrontPage from './components/FrontPage.jsx'
+import Map from '../src/components/Map.jsx'
+import Menu from '../src/components/Menu.jsx'
+import ItemInteraction from './components/Item.jsx'
+import NpcInteraction from './components/Npc.jsx'
 import './App.css'
 
 function App() {
