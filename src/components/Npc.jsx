@@ -1,33 +1,33 @@
 import { useState, useEffect } from 'react';
 
-class Npc {
-  constructor(name, className, color, inv, vis, coords) {
-    this.name = name;
-    this.className = className;
-    this.color = color;
-    this.inv = inv;
-    this.vis = vis;
-    this.coords = coords;
+function NpcInteraction({ latitude, longitude, entity, setShowDialogue }) {
+
+const [entityVis, setEntityVis] = useState("visible");
+
+  class Npc {
+    constructor(name, className, color, inv, coords) {
+      this.name = name;
+      this.className = className;
+      this.color = color;
+      this.inv = inv;
+      this.coords = coords;
+      this.vis = entityVis;
+    }
   }
-}
-let npcs = {
-  harold: new Npc("Harold", "box", "orange", ["orange"], "", [230, 230]),
-  barnaby: new Npc("Baron", "box", "red", ['shield'], "", [450, 450])
-}
+  let npcs = {
+    harold: new Npc("Harold", "box", "orange", ["orange"], [230, 230]),
+    barnaby: new Npc("Baron", "box", "red", ['shield'], [450, 450])
+  }
 
-
-
-function NpcInteraction({ latitude, longitude, entity }) {
-
-  const [entityVis, setEntityVis] = useState("visible");
-  npcs[entity].vis = entityVis;
   const radius = ((((longitude - npcs[entity].coords[0]) ** 2) + ((latitude - npcs[entity].coords[1]) ** 2)) ** 0.5);
   const inRange = (radius < 60) && (npcs[entity].vis === "visible");
 
   const keyDown = (event) => {
     if (inRange) {
       if (event.key === " ") {
-        console.log("hi!");
+        return (
+          setShowDialogue("visible")
+      )
       }
     }
   }
