@@ -13,6 +13,7 @@ function App() {
   const [showProfile, setShowProfile] = useState("hidden");
   const [nameChange, setNameChange] = useState("");
   const [colorChange, setColorChange] = useState("cyan");
+  const [animationChange, setAnimationChange] = useState(null);
   const [hpStatus, setHpStatus] = useState(1);
   const [dmgStatus, setDmgStatus] = useState(1);
   const [silverStatus, setSilverStatus] = useState(100);
@@ -22,15 +23,20 @@ function App() {
   const keyDown = (event) => {
 
     if (showProfile === "hidden") {
-      if ((event.key === "s" || event.key === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
+      if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
         setLatitude(prev => prev + 20);
-      } else if ((event.key === "w" || event.key === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
+      } else if ((event.key.toUpperCase() === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
         setLatitude(prev => prev - 20);
-      } else if ((event.key === "d" || event.key === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
+      } else if ((event.key.toUpperCase() === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
         setLongitude(prev => prev + 20);
-      } else if ((event.key === "a" || event.key === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
+      } else if ((event.key.toUpperCase() === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
         setLongitude(prev => prev - 20);
       }
+    }
+
+    if (event.key.toUpperCase() === "F") {
+      setAnimationChange("spin .5s linear 1");
+      setTimeout(() => {setAnimationChange(null)}, 500);
     }
 
     if (event.key === "Escape") {
@@ -82,7 +88,7 @@ function App() {
   silver: silverStatus,
   Player: function ({ latitude, longitude, nameChange, colorChange }) {
     return (
-      <div className="box" id="player" style={{ backgroundColor: colorChange, top: latitude + "px", left: longitude + "px", fontSize: 15 - nameChange.length }}>
+      <div className="box" id="player" style={{ backgroundColor: colorChange, top: latitude + "px", left: longitude + "px", fontSize: 15 - nameChange.length, animation: animationChange }}>
         {nameChange}
       </div>
     )

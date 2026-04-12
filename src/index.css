@@ -30,3 +30,22 @@
    margin: 10px;
    position: absolute;
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes move {
+  from {
+    translate: 20vw 0;
+  }
+
+  to {
+    translate: 0 0;
+  }
+}
