@@ -11,7 +11,8 @@ class Npc {
   }
 }
 let npcs = {
-  harold: new Npc("Harold", "box", "orange", ["orange"], "", [200, 200])
+  harold: new Npc("Harold", "box", "orange", ["orange"], "", [230, 230]),
+  barnaby: new Npc("Baron", "box", "red", ['shield'], "", [450, 450])
 }
 
 
@@ -21,7 +22,7 @@ function NpcInteraction({ latitude, longitude, entity }) {
   const [entityVis, setEntityVis] = useState("visible");
   npcs[entity].vis = entityVis;
   const radius = ((((longitude - npcs[entity].coords[0]) ** 2) + ((latitude - npcs[entity].coords[1]) ** 2)) ** 0.5);
-  const inRange = (radius < 75) && (npcs[entity].vis === "visible");
+  const inRange = (radius < 60) && (npcs[entity].vis === "visible");
 
   const keyDown = (event) => {
     if (inRange) {

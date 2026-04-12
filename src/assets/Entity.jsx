@@ -9,16 +9,16 @@ class Item {
   }
 }
 let items = {
-  shield: new Item("shield", "dot", 300, "", [100, 100])
+  orange: new Item("orange", "dot", 100, "", [])
 }
 
 
 
-function ItemInteraction({ latitude, longitude, entity, setHpStatus, setDmgStatus, setInvStatus }) {
+function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, setDmgStatus, setInvStatus }) {
 
   const [entityVis, setEntityVis] = useState("visible");
   items[entity].vis = entityVis;
-  const radius = ((((longitude - items[entity].coords[0] + 20) ** 2) + ((latitude - items[entity].coords[1] + 20) ** 2)) ** 0.5);
+  const radius = ((((longitude - location[0] + 20) ** 2) + ((latitude - location[1] + 20) ** 2)) ** 0.5);
   const inRange = (radius < 50) && (items[entity].vis === "visible");
 
   const keyDown = (event) => {
@@ -40,20 +40,22 @@ function ItemInteraction({ latitude, longitude, entity, setHpStatus, setDmgStatu
     })
   })
 
+  // entity.addEventListener('hover', )
+
   function Placement({entity}) {
     if (entityVis === "visible") {
       return (
         <div>
-          <div className={items[entity].className} style={{ visibility: entityVis, left: `${items[entity].coords[0]}px`, top: `${items[entity].coords[1]}px` }} />
+          <div className={items[entity].className} style={{ visibility: entityVis, left: `${location[0]}px`, top: `${location[1]}px` }} />
         </div>
       )
     }
   }
-  function Prompt({ entity }) {
+  function Prompt() {
     if (inRange) {
       return (
         <div>
-          <p style={{ position: "absolute", left: `${items[entity].coords[0] - 35}px`, top: `${items[entity].coords[1] + 15}px` }}>[space] collect</p>
+          <p style={{ position: "absolute", left: `${location[0] - 35}px`, top: `${location[1] + 15}px` }}>[space] collect</p>
         </div>
       )
     }
@@ -62,7 +64,7 @@ function ItemInteraction({ latitude, longitude, entity, setHpStatus, setDmgStatu
   return (
     <div>
       <Placement entity={entity} />
-      <Prompt entity={entity} />
+      <Prompt />
     </div>
   )
 }
