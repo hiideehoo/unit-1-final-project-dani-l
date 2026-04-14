@@ -31,6 +31,15 @@
    position: absolute;
 }
 
+.tutorial {
+  width: 40px;
+   height: 40px;
+   padding: 20px;
+   margin: 20px;
+   position: absolute;
+   background-color: cyan;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -108,11 +117,3 @@
     0 0 0 var(--h);
 }
 
-.child {
-  border-radius: 25px;
-  border: 2px solid green;
-  padding: 20px;
-  width: 200px;
-  height: 150px;
-  margin: auto
-}

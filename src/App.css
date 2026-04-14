@@ -1,0 +1,40 @@
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.child {
+  border-radius: 25px;
+  border: 2px solid green;
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (max-width: 640px) {
+    .parent {
+        flex-direction:column;
+    }
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 640px) {
+    .parent {
+        width: 600px;
+        margin: auto;
+    }
+}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 992px) {
+    .parent {
+        width: 992px
+    }
+}
+
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

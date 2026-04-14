@@ -7,11 +7,11 @@ function Dialogue({showDialogue, setShowDialogue}) {
     return (
         
         <div 
-        className="box" id="profile" 
-        style={{ visibility: showDialogue }}
+            className="box" id="profile" 
+            style={{ visibility: showDialogue }}
         >
 
-            <p>Hello!</p>
+            <div className="tooltip">Hello!</div>
             <div>
                 {begin}
             </div>

@@ -26,17 +26,17 @@ function App() {
 
     if (showProfile === "hidden" && showDialogue === "hidden") {
       if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
-        setAnimationChange("moveDown .05s linear 1");
-        setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev + 20)}, 50);
+        setAnimationChange("moveDown .033s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev + 20)}, 32);
       } else if ((event.key.toUpperCase() === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
-        setAnimationChange("moveUp .05s linear 1");
-        setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev - 20)}, 50);
+        setAnimationChange("moveUp .033s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev - 20)}, 32);
       } else if ((event.key.toUpperCase() === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
-        setAnimationChange("moveRight .05s linear 1");
-        setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev + 20)}, 50);
+        setAnimationChange("moveRight .033s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev + 20)}, 32);
       } else if ((event.key.toUpperCase() === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
-        setAnimationChange("moveLeft .05s linear 1");
-        setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev - 20)}, 50);
+        setAnimationChange("moveLeft .033s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev - 20)}, 32);
       }
     }
 
