@@ -1,16 +1,17 @@
 import {useState} from 'react'
-import PageElements from './PageElements';
+import Header from './Header.jsx';
+import Footer from './Footer.jsx';
 
 function FrontPage({ setStartGame }) {
 
     const [visitAbout, setVisitAbout] = useState("false");
-    const begin = <button id="begin" onClick={() => 
+    const begin = <button className="frontButtons" id="begin" onClick={() => 
         setStartGame("true")
     }>BEGIN</button>
-    const about = <button id="about" onClick={() => 
+    const about = <button className="frontButtons" id="about" onClick={() => 
         setVisitAbout("true")
     }>ABOUT</button>
-    const back = <button id="back" onClick={() => 
+    const back = <button className="frontButtons" id="back" onClick={() => 
         setVisitAbout("false")
     }>BACK</button>
 
@@ -19,22 +20,28 @@ function FrontPage({ setStartGame }) {
         return (
             <div>
 
-                <header style={{textAlign: "center"}}>
+                <Header />
+
+                <section style={{textAlign: "center"}}>
                     This is an RPG Demo Box!
                     <br />
                     {back}
-                </header>
+                </section>
 
                 
-                <PageElements />
+                <Footer />
             </div>
         )
     }
     return (
         <div style={{textAlign: "center"}}>
-            <header>
-                RPG DEMO BOX
-            </header>
+            
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <section className='parent' style={{textAlign: "center"}}>
                     
                     <div className='child'>
@@ -54,22 +61,25 @@ function FrontPage({ setStartGame }) {
                             <p style={{backgroundColor: 'white', width: '60px', height: '8px', margin: "24px", fontSize: "30px"}}>&#9645;</p>
                             <div style={{backgroundColor: 'cyan', width: '60px', height: '60px'}} />
                         </div>
-                        <p style={{marginTop: "50px"}}>Escape<br />to view profile</p>
+                        <p style={{marginTop: "45px"}}>Escape<br />to view profile</p>
                     </div>
                     <div className='child'>
                         <div className='tutorial' style={{transform: 'rotate(20deg)'}} />
-                        <p style={{marginLeft: "100px", marginTop: "-6px", fontSize: "100px", transform: 'rotate(155deg)'}}>&#8635;</p>
-                        <p style={{marginTop: "-45px"}}>F<br />to flip</p>
+                        <p style={{marginLeft: "120px", marginTop: "20px", fontSize: "100px", transform: 'rotate(155deg)'}}>&#8635;</p>
+                        <p style={{marginTop: "-75px"}}>F<br />to flip</p>
                     </div>
                     
                 </section>
-
+            <br />
             {begin}
             <br />
+            <br />
             {about}
-            <footer style={{marginBottom: "0px"}}>
-                email: daniel.laney.626@gmail.com
-            </footer>
+            <br />
+            <br />
+            
+            <Header />
+            <Footer />
         </div>
     )
 }

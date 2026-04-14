@@ -110,7 +110,8 @@ function App() {
 
   if (startGame === "true") {
     return (
-      <div>
+      <div className='gameParent'>
+        <section className='gameChild'>
         <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[100,100]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
         <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[100, 400]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
         <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[440, 200]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
@@ -120,6 +121,7 @@ function App() {
         <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
         <Dialogue showDialogue={showDialogue} setShowDialogue={setShowDialogue}/>
         <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hpStatus={hpStatus} dmgStatus={dmgStatus} silverStatus={silverStatus} invStatus={invStatus}/>
+        </section>
       </div>
     )}
     return (

@@ -1,11 +1,13 @@
 .parent {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px
 }
 
 .child {
   border-radius: 25px;
-  border: 2px solid green;
+  border: 8px solid green;
+  background-color: white;
   padding: 20px;
   width: 200px;
   height: 200px;
@@ -29,12 +31,38 @@
 }
 
 /* Large devices such as laptops (1024px and up) */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 1080px) {
     .parent {
-        width: 992px
+        width: 1064px
     }
 }
 
 * {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.fixed-header, .fixed-footer{
+    width: 101%;
+    position: fixed;        
+    background: grey;
+    padding: 20px 0;
+    color: white;
+    text-align: center;
+    margin-left: -10px;
+}
+.fixed-header{
+    top: 0;
+}
+.fixed-footer{
+    bottom: 0;
+}
+
+.gameParent {
+    display: flex;
+    align-items: center;
+}
+
+.gameChild {
+    width: 600px;
+    height: 600px;
 }

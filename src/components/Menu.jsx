@@ -4,10 +4,9 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
 
     <div
       id="profile" 
-      style={{ visibility: showProfile }}
+      style={{ visibility: showProfile, color: "white" }}
     >
-      <br />
-      <br />
+      <h3>Customize</h3>
       <br />
       <input 
         type="text" id="nameSelect" name="nameSelect" placeholder="name" 
@@ -19,7 +18,7 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
       <select 
         id="skinSelect" name="skinSelect" 
         value={colorChange} onChange={handleColorChange}
-        style={{ position: "absolute", left: "120px" }}
+        style={{ position: "absolute", left: "100px" }}
       >
         <option value="cyan">Blue</option>
         <option value="gold">Yellow</option>
@@ -40,7 +39,7 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
       <br />
       <br />
       <hr width="100%" size="2" />
-        <div style={{ color: "white" }}>
+        <div>
             <h3>Stats</h3>
             <table border="1" style={{  textAlign: "center", width: "80%", position: "absolute", left: "50px"}}>
               <tbody>
@@ -62,7 +61,7 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
       <br />
       <br />
       <hr width="100%" size="2" />
-      <div style={{ color: "white", textAlign: "left" }}>
+      <div style={{textAlign: "left" }}>
         <h3>Inventory</h3>
         {invStatus.map((number, index) => (
           <li key={index} style={{marginLeft: "45px"}}>
