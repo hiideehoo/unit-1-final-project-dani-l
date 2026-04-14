@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
-import Map from '../src/assets/Map.jsx'
-import Menu from '../src/assets/Menu.jsx'
-import ItemInteraction from './assets/Player.jsx'
+import FrontPage from './components/FrontPage.jsx'
+import Map from '../src/components/Map.jsx'
+import Menu from '../src/components/Menu.jsx'
+import ItemInteraction from './components/Item.jsx'
+import NpcInteraction from './components/Npc.jsx'
+import Dialogue from './components/Dialogue';
 import './App.css'
 
 function App() {
@@ -11,23 +14,35 @@ function App() {
   const [showProfile, setShowProfile] = useState("hidden");
   const [nameChange, setNameChange] = useState("");
   const [colorChange, setColorChange] = useState("cyan");
-  const [hPStatus, setHPStatus] = useState(1);
-  const [dMGStatus, setDMGStatus] = useState(1);
-  const [$Status, set$Status] = useState(100);
-  const [invStatus, setInvStatus] = useState(["apple"]);
+  const [animationChange, setAnimationChange] = useState(null);
+  const [hpStatus, setHpStatus] = useState(1);
+  const [dmgStatus, setDmgStatus] = useState(1);
+  const [silverStatus, setSilverStatus] = useState(100);
+  const [invStatus, setInvStatus] = useState([]);
+  const [startGame, setStartGame] = useState("false");
+  const [showDialogue, setShowDialogue] = useState("hidden");
 
   const keyDown = (event) => {
 
-    if (showProfile === "hidden") {
-      if ((event.key === "s" || event.key === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
-        setLatitude(prev => prev + 20);
-      } else if ((event.key === "w" || event.key === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
-        setLatitude(prev => prev - 20);
-      } else if ((event.key === "d" || event.key === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
-        setLongitude(prev => prev + 20);
-      } else if ((event.key === "a" || event.key === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
-        setLongitude(prev => prev - 20);
+    if (showProfile === "hidden" && showDialogue === "hidden") {
+      if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
+        setAnimationChange("moveDown .033s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev + 20)}, 32);
+      } else if ((event.key.toUpperCase() === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
+        setAnimationChange("moveUp .033s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev - 20)}, 32);
+      } else if ((event.key.toUpperCase() === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
+        setAnimationChange("moveRight .033s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev + 20)}, 32);
+      } else if ((event.key.toUpperCase() === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
+        setAnimationChange("moveLeft .033s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev - 20)}, 32);
       }
+    }
+
+    if (event.key.toUpperCase() === "F") {
+      setAnimationChange("spin .5s linear 1");
+      setTimeout(() => {setAnimationChange(null)}, 500);
     }
 
     if (event.key === "Escape") {
@@ -74,28 +89,46 @@ function App() {
 
   let player = {
   inventory: invStatus,
-  hitPoints: hPStatus,
-  damage: dMGStatus,
-  silver: $Status,
-  Player: function ({ latitude, longitude, nameChange, colorChange }) {
+  hitPoints: hpStatus,
+  damage: dmgStatus,
+  silver: silverStatus,
+  Player: function () {
     return (
-      <div className="box" id="player" style={{ width: "20px", height: "20px", backgroundColor: colorChange, padding: "10px", margin: "10px", position: "absolute", top: latitude + "px", left: longitude + "px", fontSize: 13 - nameChange.length }}>
+      <div 
+        className="box" id="player" 
+        style={{ 
+          backgroundColor: colorChange, 
+          top: latitude + "px", left: longitude + "px", 
+          fontSize: 15 - nameChange.length, 
+          animation: animationChange 
+        }}>
         {nameChange}
       </div>
     )
   }
 }
 
-  return (
-    <>
-      <div>
-        <ItemInteraction latitude={latitude} longitude={longitude} entity="shield" setDMGStatus={setDMGStatus} setInvStatus={setInvStatus} setHPStatus={setHPStatus}/>
+  if (startGame === "true") {
+    return (
+      <div className='gameParent'>
+        <section className='gameChild'>
+        <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[100,100]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
+        <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[100, 400]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
+        <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[440, 200]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
+        <NpcInteraction latitude={latitude} longitude={longitude} entity="harold" setShowDialogue={setShowDialogue}/>
+        <NpcInteraction latitude={latitude} longitude={longitude} entity="barnaby" setShowDialogue={setShowDialogue}/>
         <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
         <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
-        <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hPStatus={hPStatus} dMGStatus={dMGStatus} $Status={$Status} invStatus={invStatus}/>
+        <Dialogue showDialogue={showDialogue} setShowDialogue={setShowDialogue}/>
+        <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hpStatus={hpStatus} dmgStatus={dmgStatus} silverStatus={silverStatus} invStatus={invStatus}/>
+        </section>
       </div>
-    </>
-  )
-}
+    )}
+    return (
+      <div>
+        <FrontPage setStartGame={setStartGame} />
+      </div>
+    )
+  }
 
 export default App;

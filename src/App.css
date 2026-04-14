@@ -1,0 +1,68 @@
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px
+}
+
+.child {
+  border-radius: 25px;
+  border: 8px solid green;
+  background-color: white;
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+
+
+/* Small devices such as large phones (640px and up) */
+@media only screen and (max-width: 640px) {
+    .parent {
+        flex-direction:column;
+    }
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 640px) {
+    .parent {
+        width: 600px;
+        margin: auto;
+    }
+}
+
+/* Large devices such as laptops (1024px and up) */
+@media only screen and (min-width: 1080px) {
+    .parent {
+        width: 1064px
+    }
+}
+
+* {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.fixed-header, .fixed-footer{
+    width: 101%;
+    position: fixed;        
+    background: grey;
+    padding: 20px 0;
+    color: white;
+    text-align: center;
+    margin-left: -10px;
+}
+.fixed-header{
+    top: 0;
+}
+.fixed-footer{
+    bottom: 0;
+}
+
+.gameParent {
+    display: flex;
+    align-items: center;
+}
+
+.gameChild {
+    width: 600px;
+    height: 600px;
+}
