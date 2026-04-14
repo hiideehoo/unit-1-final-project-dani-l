@@ -24,15 +24,19 @@ function App() {
 
   const keyDown = (event) => {
 
-    if (showProfile === "hidden") {
+    if (showProfile === "hidden" && showDialogue === "hidden") {
       if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
-        setLatitude(prev => prev + 20);
+        setAnimationChange("moveDown .05s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev + 20)}, 50);
       } else if ((event.key.toUpperCase() === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
-        setLatitude(prev => prev - 20);
+        setAnimationChange("moveUp .05s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev - 20)}, 50);
       } else if ((event.key.toUpperCase() === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
-        setLongitude(prev => prev + 20);
+        setAnimationChange("moveRight .05s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev + 20)}, 50);
       } else if ((event.key.toUpperCase() === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
-        setLongitude(prev => prev - 20);
+        setAnimationChange("moveLeft .05s linear 1");
+        setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev - 20)}, 50);
       }
     }
 
@@ -114,8 +118,8 @@ function App() {
         <NpcInteraction latitude={latitude} longitude={longitude} entity="barnaby" setShowDialogue={setShowDialogue}/>
         <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
         <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
-        <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hpStatus={hpStatus} dmgStatus={dmgStatus} silverStatus={silverStatus} invStatus={invStatus}/>
         <Dialogue showDialogue={showDialogue} setShowDialogue={setShowDialogue}/>
+        <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hpStatus={hpStatus} dmgStatus={dmgStatus} silverStatus={silverStatus} invStatus={invStatus}/>
       </div>
     )}
     return (

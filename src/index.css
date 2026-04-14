@@ -40,13 +40,43 @@
   }
 }
 
-@keyframes move {
+@keyframes moveDown {
   from {
-    translate: 20vw 0;
+    transform: translateY(0);
   }
 
   to {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes moveUp {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes moveRight {
+  from {
     translate: 0 0;
+  }
+
+  to {
+    translate: 20px 0;
+  }
+}
+
+@keyframes moveLeft {
+  from {
+    translate: 0 0;
+  }
+
+  to {
+    translate: -20px 0;
   }
 }
 
@@ -76,4 +106,13 @@
   border-image: conic-gradient(var(--c) 0 0) fill 0/
     calc(var(--p) - var(--b)/2) var(--r) calc(100% - var(--p) - var(--b)/2) 0/
     0 0 0 var(--h);
+}
+
+.child {
+  border-radius: 25px;
+  border: 2px solid green;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+  margin: auto
 }
