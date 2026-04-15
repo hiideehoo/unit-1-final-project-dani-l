@@ -10,8 +10,8 @@ function App() {
     <Router>
         <Routes>
             <Route exact path="/" element={<FrontPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/game" element={<DemoBox />} />
+            <Route exact path="/about" element={<AboutPage />} />
+            <Route exact path="/game" element={<DemoBox />} />
         </Routes>
     </Router>
   )
