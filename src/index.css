@@ -1,17 +1,43 @@
 .room1 {
-  background-color: green;
+  background-color: indigo;
   position: absolute;
 }
 
-#profile {
+.profile {
+  border-radius: 25px;
   width: 520px;
   height: 520px;
-  background-color: gray;
+  background-color: rgb(101, 131, 156);
+  color: white;
   padding: 10px;
-  margin: 10px;
   position: absolute;
-  top: 0px;
-  left: 0px
+  top: 160px;
+  left: 160px;
+  box-shadow: 5px 10px 2px 0 rgba(0, 0, 0, 0.687);
+}
+
+.backdrop {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 230px;
+  left: 230px;
+  box-shadow: 0 0 0 220px rgba(0, 0, 0, 0.687);
+}
+
+#warning {
+  width: 400px;
+  height: 400px;
+  top: 230px;
+  text-align: center;
+  display: grid;
+  align-items: center;
+  background-color: rgb(101, 131, 156);
+  color: white;
+  box-shadow: 0 0 0 5000px rgba(0, 0, 0, 0.687);
+  font-weight: bold;
+  position: relative;
+  visibility: hidden;
 }
 
 .dot {
@@ -21,26 +47,30 @@
   border-radius: 50%;
   display: inline-block;
   position: absolute;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.9);
 }
 
 .box {
-   width: 20px;
-   height: 20px;
-   padding: 10px;
-   margin: 10px;
-   position: absolute;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  display: grid;
+  align-items: center;
+  position: absolute;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.9);
 }
 
 .tutorial {
   width: 40px;
-   height: 40px;
-   padding: 20px;
-   margin: 20px;
-   position: absolute;
-   background-color: cyan;
+  height: 40px;
+  padding: 20px;
+  margin: 20px;
+  position: absolute;
+  background-color: cyan;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.9);
 }
 
-.frontButtons {
+.buttons {
   font-family: "Open Sans", sans-serif;
   font-size: 28px;
   letter-spacing: 2px;
@@ -55,20 +85,20 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  width: 300px;
 }
 
-.frontButtons:active {
+.buttons:hover {
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px;
+  top: 1px;
+  left: 1px;
+}
+
+.buttons:active {
   box-shadow: 0px 0px 0px 0px;
   top: 5px;
   left: 5px;
 }
-
-@media (min-width: 768px) {
-  .frontButtons {
-    padding: 0.25em 0.75em;
-  }
-}
-
 
 @keyframes spin {
   0% {
@@ -118,32 +148,3 @@
     translate: -20px 0;
   }
 }
-
-/* HTML: <div class="tooltip">This is a Speech Bubble with a solid coloration and with border radius </div> */
-.tooltip {
-  color: black;
-  font-size: 18px;
-  max-width: 28ch;
-  text-align: center;
-}
-.tooltip {
-  /* triangle dimension */
-  --b: 2em; /* base */
-  --h: 1em; /* height */
-
-  --p: 50%; /* triangle position (0%:top 100%:bottom) */
-  --r: 1.2em; /* the radius */
-  --c: white;
-
-  padding: 1em;
-  border-radius: var(--r)/min(var(--r),var(--p) - var(--b)/2) var(--r) var(--r) min(var(--r),100% - var(--p) - var(--b)/2);
-  clip-path: polygon(0 100%,100% 100%,100% 0,0 0,
-    0 max(0%  ,var(--p) - var(--b)/2),
-    calc(-1*var(--h)) var(--p),
-    0 min(100%,var(--p) + var(--b)/2));
-  background: var(--c);
-  border-image: conic-gradient(var(--c) 0 0) fill 0/
-    calc(var(--p) - var(--b)/2) var(--r) calc(100% - var(--p) - var(--b)/2) 0/
-    0 0 0 var(--h);
-}
-

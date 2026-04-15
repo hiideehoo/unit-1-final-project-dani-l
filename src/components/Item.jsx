@@ -1,25 +1,25 @@
 import { useState, useEffect } from 'react';
 class Item {
-  constructor(name, className, value, vis, coords) {
+  constructor(name, className, value, vis, opacity, coords) {
     this.name = name;
     this.className = className;
     this.value = value;
     this.vis = vis;
+    this.opacity = opacity;
     this.coords = coords;
   }
 }
 let items = {
-  orange: new Item("orange", "dot", 100, "", [])
+  orange: new Item("orange", "dot", 100, "", "", [])
 }
-
-
 
 function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, setDmgStatus, setInvStatus }) {
 
   const [entityVis, setEntityVis] = useState("visible");
+  const [entityOpacity, setEntityOpacity] = useState("0");
   items[entity].vis = entityVis;
-  const radius = ((((longitude - location[0] + 20) ** 2) + ((latitude - location[1] + 20) ** 2)) ** 0.5);
-  const inRange = (radius < 60) && (items[entity].vis === "visible");
+  items[entity].opacity = entityOpacity;
+  const inRange = (((((longitude - location[0]) ** 2) + ((latitude - location[1]) ** 2)) ** 0.5) < 67) && (items[entity].vis === "visible");
 
   const keyDown = (event) => {
     if (inRange) {
@@ -44,16 +44,22 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
     if (entityVis === "visible") {
       return (
         <div>
-          <div className={items[entity].className} style={{ visibility: entityVis, left: `${location[0]}px`, top: `${location[1]}px` }} />
+          <div className={items[entity].className} style={{ visibility: entityVis, opacity: entityOpacity, left: `${location[0]}px`, top: `${location[1]}px` }} />
         </div>
       )
     }
   }
   function Prompt() {
+
+    function Find() {
+      setEntityOpacity(1)
+    }
+
     if (inRange) {
       return (
         <div>
-          <p style={{ position: "absolute", left: `${location[0] - 35}px`, top: `${location[1] + 15}px` }}>[space] collect</p>
+          <Find />
+          <p style={{ position: "absolute", left: `${location[0] - 40}px`, top: `${location[1] + 15}px` }}>[space] collect</p>
         </div>
       )
     }
