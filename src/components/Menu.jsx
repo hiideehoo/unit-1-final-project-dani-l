@@ -3,7 +3,7 @@ import { useState } from 'react';
 function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleColorChange, hpStatus, dmgStatus, silverStatus, invStatus }) {
 
 
-  const [isShown, setIsShown] = useState(false);
+
 
   return (
     <div>
@@ -16,14 +16,14 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
       >
         <h3>Customize</h3>
         <br />
-        <input 
+        <input  // name input
           type="text" id="nameSelect" name="nameSelect" placeholder="name" 
           value={nameChange} onChange={handleNameChange}
           style={{ position: "absolute", left: "60px" }}
         />
         <br />
         <br />
-        <select 
+        <select // color change
           id="skinSelect" name="skinSelect" 
           value={colorChange} onChange={handleColorChange}
           style={{ position: "absolute", left: "100px" }}
@@ -33,7 +33,7 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
           <option value="pink">Pink</option>
           <option value="gold">Yellow</option>
         </select>
-        <div 
+        <div // player preview
           className="box" id="playerSprite" 
           style={{ 
             width: "80px", height: "80px", 
@@ -49,7 +49,7 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
         <hr width="100%" size="2" />
           <div>
               <h3>Stats</h3>
-              <table
+              <table // table for stats
                   border="1" style={{  
                     textAlign: "center", width: "80%", position: "absolute", left: "50px"
                   }}
@@ -75,7 +75,7 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
         <hr width="100%" size="2" />
         <div style={{textAlign: "left" }}>
           <h3>Inventory</h3>
-          {invStatus.map((number, index) => (
+          {invStatus.map((number, index) => ( // list for inventory
             <li key={index} style={{marginLeft: "45px"}}>
               {number}
             </li>

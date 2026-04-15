@@ -19,15 +19,13 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
   const [entityOpacity, setEntityOpacity] = useState("0");
   items[entity].vis = entityVis;
   items[entity].opacity = entityOpacity;
-  const inRange = (((((longitude - location[0]) ** 2) + ((latitude - location[1]) ** 2)) ** 0.5) < 67) && (items[entity].vis === "visible");
+  const inRange = (((((longitude - location[0]) ** 2) + ((latitude - location[1]) ** 2)) ** 0.5) < 67) && (items[entity].vis === "visible"); // Checks distance from entity
 
-  const keyDown = (event) => {
+  const keyDown = (event) => { // space input to interact
     if (inRange) {
       if (event.key === " ") {
         setEntityVis(prev => prev === "hidden");
         setInvStatus(prev => [...prev, entity]);
-          if (entity === "shield") {setHpStatus(prev => prev + 4);}
-          if (entity === "sword") {setDmgStatus(prev => prev + 4);}
       }
     }
   }
@@ -40,7 +38,13 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
     })
   })
 
-  function Placement({entity}) {
+  useEffect(() => { // Displays entity once found in the map
+    if (inRange) {
+      setEntityOpacity(1);
+    }
+  })
+
+  function Placement({entity}) { // places entity on the map
     if (entityVis === "visible") {
       return (
         <div>
@@ -49,16 +53,11 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
       )
     }
   }
-  function Prompt() {
 
-    function Find() {
-      setEntityOpacity(1)
-    }
-
+  function Prompt() { // displays text when in range of entity
     if (inRange) {
       return (
         <div>
-          <Find />
           <p style={{ position: "absolute", left: `${location[0] - 40}px`, top: `${location[1] + 15}px` }}>[space] collect</p>
         </div>
       )

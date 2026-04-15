@@ -1,6 +1,6 @@
 function Warning() {
 
-    return (
+    return ( // displays a warning if screen too small
         <div style={{display: "flex", alignItems: "center", justifyContent: "center" }}>
 
             <section id="warning">

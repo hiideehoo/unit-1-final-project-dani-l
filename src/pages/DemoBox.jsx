@@ -18,41 +18,50 @@ function DemoBox() {
     const [dmgStatus, setDmgStatus] = useState(1);
     const [silverStatus, setSilverStatus] = useState(100);
     const [invStatus, setInvStatus] = useState([]);
+    const [conversation, setConversation] = useState("");
     const [showDialogue, setShowDialogue] = useState("hidden");
 
-    const keyDown = (event) => {
+    const keyDown = (event) => { // Looks for key input
 
-        if (showProfile === "hidden" && showDialogue === "hidden") {
-            if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
-                setAnimationChange("moveDown .033s linear 1");
-                setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev + 20)}, 32);
-            } else if ((event.key.toUpperCase() === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
+        if (showProfile === "hidden" && showDialogue === "hidden") { // Prevents movement during menu navigation
+            if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude <= borderCollision.room1.south.y - 20) { // Checks wall boundaries
+                setAnimationChange("moveDown .033s linear 1"); // Animates movement for smoothness
+                if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
+                    setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev + 20)}, 32);
+                }
+            } else if ((event.key.toUpperCase() === "W" || event.key === "ArrowUp") && latitude >= borderCollision.room1.north.y + 20) {
                 setAnimationChange("moveUp .033s linear 1");
-                setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev - 20)}, 32);
-            } else if ((event.key.toUpperCase() === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
+                if ((event.key.toUpperCase() === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
+                    setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev - 20)}, 32);
+                }
+            } else if ((event.key.toUpperCase() === "D" || event.key === "ArrowRight") && longitude <= borderCollision.room1.east.x - 20) {
                 setAnimationChange("moveRight .033s linear 1");
-                setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev + 20)}, 32);
-            } else if ((event.key.toUpperCase() === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
+                if ((event.key.toUpperCase() === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
+                    setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev + 20)}, 32);
+                }
+            } else if ((event.key.toUpperCase() === "A" || event.key === "ArrowLeft") && longitude >= borderCollision.room1.west.x + 20) {
                 setAnimationChange("moveLeft .033s linear 1");
-                setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev - 20)}, 32);
+                if ((event.key.toUpperCase() === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
+                    setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev - 20)}, 32);
+                }
             } else if (event.key.toUpperCase() === "F") {
                 setAnimationChange("spin .5s linear 1");
                 setTimeout(() => {setAnimationChange(null)}, 500);
             }
         }
 
-        if (event.key === "Escape") {
-        setShowProfile(prev =>
-            prev === "hidden" ? "visible" : "hidden"
-        );
+        if (event.key === "Escape") { // Opens profile
+            setShowProfile(prev =>
+                prev === "hidden" ? "visible" : "hidden"
+            );
         }
     };
 
-    useEffect(() => {
+    useEffect(() => { // Window always listening for keyboard inputs
         window.addEventListener('keydown', keyDown);
 
         return (() => {
-        window.removeEventListener('keydown', keyDown);
+            window.removeEventListener('keydown', keyDown);
         })
     });
 
@@ -93,10 +102,10 @@ function DemoBox() {
             <div 
                 className="box" id="player" 
                 style={{ 
-                backgroundColor: colorChange, 
-                top: latitude + "px", left: longitude + "px", 
-                fontSize: 15 - nameChange.length, 
-                animation: animationChange 
+                    backgroundColor: colorChange, 
+                    top: latitude + "px", left: longitude + "px", 
+                    fontSize: 15 - nameChange.length, 
+                    animation: animationChange 
                 }}>
                 {nameChange}
             </div>
@@ -110,11 +119,11 @@ function DemoBox() {
                 <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[712,413]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
                 <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[128, 673]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
                 <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[542, 263]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
-                <NpcInteraction latitude={latitude} longitude={longitude} entity="orange" setShowDialogue={setShowDialogue}/>
-                <NpcInteraction latitude={latitude} longitude={longitude} entity="red" setShowDialogue={setShowDialogue}/>
+                <NpcInteraction latitude={latitude} longitude={longitude} entity="orange" setShowDialogue={setShowDialogue} setConversation={setConversation} />
+                <NpcInteraction latitude={latitude} longitude={longitude} entity="red" setShowDialogue={setShowDialogue} setConversation={setConversation} />
                 <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
                 <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
-                <Dialogue showDialogue={showDialogue} setShowDialogue={setShowDialogue}/>
+                <Dialogue showDialogue={showDialogue} setShowDialogue={setShowDialogue} conversation={conversation} setConversation={setConversation} invStatus={invStatus} setInvStatus={setInvStatus} />
                 <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hpStatus={hpStatus} dmgStatus={dmgStatus} silverStatus={silverStatus} invStatus={invStatus}/>
                 <Warning />
             </section>

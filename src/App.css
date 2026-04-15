@@ -52,6 +52,7 @@ body {
   width: 200px;
   height: 200px;
   margin: auto;
+  position: relative;
 }
 
 #about {
@@ -85,6 +86,7 @@ body {
         align-items: center;
         margin-top: 20px;
         margin-bottom: 100px;
+        height: 1120px
     }
 }
 

@@ -1,30 +1,48 @@
-function Dialogue({showDialogue, setShowDialogue}) {
+import Barter from './Barter';
 
-    const begin = <button id="begin" onClick={() => 
-        setShowDialogue("hidden")
-    }>Goodbye!</button>
+import Harold1 from './DialogLines/Harold1';
+import Harold2 from './DialogLines/Harold2';
 
-    return (
-        <div>
+import Rowyn1 from './DialogLines/Rowyn1';
 
-            <div className="backdrop" style={{ visibility: showDialogue }} />
+function Dialogue({ showDialogue, setShowDialogue, conversation, setConversation, invStatus, setInvStatus }) {
 
-            <section 
-                className="profile" 
-                style={{ visibility: showDialogue }}
-            >
+    if (conversation === "Harold") {
+        return (
+            <div>
+                <Harold1 showDialogue={showDialogue} setShowDialogue={setShowDialogue} setConversation={setConversation} />
+            </div>
+        )
+    }
 
-                <div className="tooltip">Hello!</div>
-                <div>
-                    {begin}
-                </div>
+    if (conversation === "Harold2") {
+        return (
+            <div>
+                <Harold2 showDialogue={showDialogue} setShowDialogue={setShowDialogue} setConversation={setConversation} />
+            </div>
+        )
+    }
 
-            </section>
+    if (conversation === "barter") {
+        return (
+            <div>
+                <Barter showDialogue={showDialogue} setShowDialogue={setShowDialogue} invStatus={invStatus} setInvStatus={setInvStatus} />
+            </div>
+        )
+    }
+    
 
-        </div>
-        
 
-    )
+
+
+    if (conversation === "Rowyn") {
+        return (
+            <div>
+                <Rowyn1 showDialogue={showDialogue} setShowDialogue={setShowDialogue} setConversation={setConversation} />
+            </div>
+        )
+    }
+
 }
 
 export default Dialogue;
