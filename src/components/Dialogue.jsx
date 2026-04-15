@@ -5,18 +5,24 @@ function Dialogue({showDialogue, setShowDialogue}) {
     }>Goodbye!</button>
 
     return (
-        
-        <div 
-            className="box" id="profile" 
-            style={{ visibility: showDialogue }}
-        >
+        <div>
 
-            <div className="tooltip">Hello!</div>
-            <div>
-                {begin}
-            </div>
+            <div className="backdrop" style={{ visibility: showDialogue }} />
+
+            <section 
+                className="profile" 
+                style={{ visibility: showDialogue }}
+            >
+
+                <div className="tooltip">Hello!</div>
+                <div>
+                    {begin}
+                </div>
+
+            </section>
 
         </div>
+        
 
     )
 }

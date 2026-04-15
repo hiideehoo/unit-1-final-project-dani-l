@@ -4,11 +4,12 @@ import Menu from '../components/Menu.jsx';
 import ItemInteraction from '../components/Item.jsx';
 import NpcInteraction from '../components/Npc.jsx';
 import Dialogue from '../components/Dialogue.jsx';
+import Warning from '../components/Warning.jsx';
 
 function DemoBox() {
 
-    const [latitude, setLatitude] = useState(20);
-    const [longitude, setLongitude] = useState(480);
+    const [latitude, setLatitude] = useState(40);
+    const [longitude, setLongitude] = useState(40);
     const [showProfile, setShowProfile] = useState("hidden");
     const [nameChange, setNameChange] = useState("");
     const [colorChange, setColorChange] = useState("cyan");
@@ -22,24 +23,22 @@ function DemoBox() {
     const keyDown = (event) => {
 
         if (showProfile === "hidden" && showDialogue === "hidden") {
-        if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
-            setAnimationChange("moveDown .033s linear 1");
-            setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev + 20)}, 32);
-        } else if ((event.key.toUpperCase() === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
-            setAnimationChange("moveUp .033s linear 1");
-            setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev - 20)}, 32);
-        } else if ((event.key.toUpperCase() === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
-            setAnimationChange("moveRight .033s linear 1");
-            setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev + 20)}, 32);
-        } else if ((event.key.toUpperCase() === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
-            setAnimationChange("moveLeft .033s linear 1");
-            setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev - 20)}, 32);
-        }
-        }
-
-        if (event.key.toUpperCase() === "F") {
-        setAnimationChange("spin .5s linear 1");
-        setTimeout(() => {setAnimationChange(null)}, 500);
+            if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
+                setAnimationChange("moveDown .033s linear 1");
+                setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev + 20)}, 32);
+            } else if ((event.key.toUpperCase() === "W" || event.key === "ArrowUp") && latitude > borderCollision.room1.north.y) {
+                setAnimationChange("moveUp .033s linear 1");
+                setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev - 20)}, 32);
+            } else if ((event.key.toUpperCase() === "D" || event.key === "ArrowRight") && longitude < borderCollision.room1.east.x) {
+                setAnimationChange("moveRight .033s linear 1");
+                setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev + 20)}, 32);
+            } else if ((event.key.toUpperCase() === "A" || event.key === "ArrowLeft") && longitude > borderCollision.room1.west.x) {
+                setAnimationChange("moveLeft .033s linear 1");
+                setTimeout(() => {setAnimationChange(null); setLongitude(prev => prev - 20)}, 32);
+            } else if (event.key.toUpperCase() === "F") {
+                setAnimationChange("spin .5s linear 1");
+                setTimeout(() => {setAnimationChange(null)}, 500);
+            }
         }
 
         if (event.key === "Escape") {
@@ -77,10 +76,10 @@ function DemoBox() {
 
     const borderCollision = {
         room1: {
-        west: new Border(10, 500, 0, 0),
-        east: new Border(10, 500, 500, 0),
-        north: new Border(500, 10, 0, 0),
-        south: new Border(500, 10, 0, 500)
+        west: new Border(10, 800, 0, 0),
+        east: new Border(10, 800, 800, 0),
+        north: new Border(800, 10, 0, 0),
+        south: new Border(800, 10, 0, 800)
         }
     }
 
@@ -107,16 +106,17 @@ function DemoBox() {
 
     return (
         <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-            <section style={{position: "relative", width: "560px", height: "560px", marginTop: "100px", backgroundColor: "rgb(224, 255, 246)"}}>
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[100,100]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[100, 400]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[440, 200]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
-                <NpcInteraction latitude={latitude} longitude={longitude} entity="harold" setShowDialogue={setShowDialogue}/>
-                <NpcInteraction latitude={latitude} longitude={longitude} entity="barnaby" setShowDialogue={setShowDialogue}/>
+            <section style={{position: "relative", width: "860px", height: "860px", marginTop: "50px", backgroundColor: "rgb(224, 255, 246)"}}>
+                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[672,213]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
+                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[128, 673]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
+                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[542, 263]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
+                <NpcInteraction latitude={latitude} longitude={longitude} entity="orange" setShowDialogue={setShowDialogue}/>
+                <NpcInteraction latitude={latitude} longitude={longitude} entity="red" setShowDialogue={setShowDialogue}/>
                 <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
                 <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
                 <Dialogue showDialogue={showDialogue} setShowDialogue={setShowDialogue}/>
                 <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hpStatus={hpStatus} dmgStatus={dmgStatus} silverStatus={silverStatus} invStatus={invStatus}/>
+                <Warning />
             </section>
       </div>
     )

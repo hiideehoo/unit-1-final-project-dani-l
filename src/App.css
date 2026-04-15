@@ -59,6 +59,12 @@ body {
     }
 }
 
+@media (max-width: 860px) {
+    #warning {
+        visibility: visible;
+    }
+}
+
 @media (min-width: 640px) {
     .tipsParent {
         width: 600px;

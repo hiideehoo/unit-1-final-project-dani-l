@@ -15,12 +15,12 @@ const [entityVis, setEntityVis] = useState("visible");
     }
   }
   let npcs = {
-    harold: new Npc("Harold", "box", "orange", ["orange"], [230, 230]),
-    barnaby: new Npc("Baron", "box", "red", ['shield'], [450, 450])
+    orange: new Npc("Harold", "box", "orange", ["orange"], [430, 120]),
+    red: new Npc("Rowyn", "box", "red", ['shield'], [750, 750])
   }
 
   const radius = ((((longitude - npcs[entity].coords[0]) ** 2) + ((latitude - npcs[entity].coords[1]) ** 2)) ** 0.5);
-  const inRange = (radius < 60) && (npcs[entity].vis === "visible");
+  const inRange = (radius < 75) && (npcs[entity].vis === "visible");
 
   const keyDown = (event) => {
     if (inRange) {
@@ -53,7 +53,7 @@ const [entityVis, setEntityVis] = useState("visible");
     if (inRange) {
       return (
         <div>
-          <p style={{ position: "absolute", left: `${npcs[entity].coords[0] - 10}px`, top: `${npcs[entity].coords[1] + 40}px` }}>[space] talk</p>
+          <p style={{ position: "absolute", left: `${npcs[entity].coords[0] - 20}px`, top: `${npcs[entity].coords[1] + 30}px` }}>[space] talk</p>
         </div>
       )
     }
