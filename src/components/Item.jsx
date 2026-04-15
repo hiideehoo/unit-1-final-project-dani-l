@@ -13,15 +13,13 @@ let items = {
   orange: new Item("orange", "dot", 100, "", "", [])
 }
 
-
-
 function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, setDmgStatus, setInvStatus }) {
 
   const [entityVis, setEntityVis] = useState("visible");
   const [entityOpacity, setEntityOpacity] = useState("0");
   items[entity].vis = entityVis;
   items[entity].opacity = entityOpacity;
-  const inRange = (((((longitude - location[0] + 20) ** 2) + ((latitude - location[1] + 20) ** 2)) ** 0.5) < 60) && (items[entity].vis === "visible");
+  const inRange = (((((longitude - location[0]) ** 2) + ((latitude - location[1]) ** 2)) ** 0.5) < 67) && (items[entity].vis === "visible");
 
   const keyDown = (event) => {
     if (inRange) {

@@ -16,8 +16,8 @@ function FrontPage() {
 
     
     return (
-        <div style={{textAlign: "center", marginTop: "112px"}}>
-            <br />
+        <div style={{textAlign: "center", marginTop: "112px", marginBottom: "180px"}}>
+            
             <h3 style={{fontFamily: 'Rockwell', color: "white"}}>You are a box that must defeat Rowyn the Red.<br/>To do so, you must get help from Harold the Orange.</h3>
             
             <section className='tipsParent'>
@@ -48,12 +48,14 @@ function FrontPage() {
                     </div>
                     
                 </section>
-            <br />
+            
             <br />
             {begin}
             <br />
             <br />
             {about}
+            <br />
+            <br />
             <br />
             
             <Header />

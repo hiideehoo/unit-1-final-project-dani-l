@@ -88,18 +88,17 @@
   width: 300px;
 }
 
+.buttons:hover {
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px;
+  top: 1px;
+  left: 1px;
+}
+
 .buttons:active {
   box-shadow: 0px 0px 0px 0px;
   top: 5px;
   left: 5px;
 }
-
-@media (min-width: 768px) {
-  .buttons {
-    padding: 0.25em 0.75em;
-  }
-}
-
 
 @keyframes spin {
   0% {

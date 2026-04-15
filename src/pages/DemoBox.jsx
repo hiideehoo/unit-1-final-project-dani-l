@@ -107,7 +107,7 @@ function DemoBox() {
     return (
         <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
             <section style={{position: "relative", width: "860px", height: "860px", marginTop: "50px", backgroundColor: "lightcyan"}}>
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[672,213]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
+                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[712,413]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
                 <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[128, 673]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
                 <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[542, 263]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
                 <NpcInteraction latitude={latitude} longitude={longitude} entity="orange" setShowDialogue={setShowDialogue}/>

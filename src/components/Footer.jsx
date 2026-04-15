@@ -1,11 +1,10 @@
 function Footer() {
     return (
         <div>
-            <br />
-            <br />
-            <br />
             <footer className="footer">
-                contact meeeeeeeee
+                <div><p>Social: <a href="https://youtube.com/@daniellaney626?si=iTsR1estzLFxGTqu" style={{color: "white"}}>YouTube</a></p></div>
+                <div><p>Email: daniel.laney.626@gmail.com</p></div>
+                <div><p>Phone: (618) 670-2873</p></div>
             </footer>
         </div>
     )
