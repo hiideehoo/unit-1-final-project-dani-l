@@ -1,45 +1,30 @@
 import { useState, useEffect } from 'react';
 
-function NpcInteraction({ latitude, longitude, entity, setShowDialogue }) {
+function NpcInteraction({ latitude, longitude, entity, setShowDialogue, setConversation }) {
 
 const [entityVis, setEntityVis] = useState("visible");
 
   class Npc {
-    constructor(name, className, color, inv, coords) {
+    constructor(name, className, color, coords) {
       this.name = name;
       this.className = className;
       this.color = color;
-      this.inv = inv;
       this.coords = coords;
       this.vis = entityVis;
     }
   }
   let npcs = {
-    orange: new Npc("Harold", "box", "orange", ["orange"], [430, 120]),
-    red: new Npc("Rowyn", "box", "red", ['shield'], [750, 750])
+    orange: new Npc("Harold", "box", "orange", [430, 120]),
+    red: new Npc("Rowyn", "box", "red", [750, 750])
   }
 
   const radius = ((((longitude - npcs[entity].coords[0]) ** 2) + ((latitude - npcs[entity].coords[1]) ** 2)) ** 0.5);
   const inRange = (radius < 75) && (npcs[entity].vis === "visible");
 
-  const keyDown = (event) => {
-    if (inRange) {
-      if (event.key === " ") {
-        return (
-          setShowDialogue("visible")
-      )
-      }
-    }
+  function Update(entity) {
+    setConversation(npcs[entity].name);
+    setShowDialogue("visible");
   }
-
-  useEffect(() => {
-    window.addEventListener('keydown', keyDown);
-
-    return (() => {
-      window.removeEventListener('keydown', keyDown);
-    })
-  })
-
   function Placement({entity}) {
     if (entityVis === "visible") {
       return (
@@ -53,11 +38,31 @@ const [entityVis, setEntityVis] = useState("visible");
     if (inRange) {
       return (
         <div>
-          <p style={{ position: "absolute", left: `${npcs[entity].coords[0] - 20}px`, top: `${npcs[entity].coords[1] + 30}px` }}>[space] talk</p>
+          <p style={{ position: "absolute", left: `${npcs[entity].coords[0] - 10}px`, top: `${npcs[entity].coords[1] + 40}px` }}>[space] talk</p>
         </div>
       )
     }
   }
+
+  
+
+    const keyDown = (event) => {
+    if (inRange) {
+      if (event.key === " ") {
+        return (
+          Update(entity)
+        )
+      }
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', keyDown);
+
+    return (() => {
+      window.removeEventListener('keydown', keyDown);
+    })
+  })
 
   return (
     <div>

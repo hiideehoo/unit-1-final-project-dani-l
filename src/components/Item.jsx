@@ -40,6 +40,12 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
     })
   })
 
+  useEffect(() => {
+    if (inRange) {
+      setEntityOpacity(1);
+    }
+  })
+
   function Placement({entity}) {
     if (entityVis === "visible") {
       return (
@@ -49,16 +55,11 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
       )
     }
   }
+
   function Prompt() {
-
-    function Find() {
-      setEntityOpacity(1)
-    }
-
     if (inRange) {
       return (
         <div>
-          <Find />
           <p style={{ position: "absolute", left: `${location[0] - 40}px`, top: `${location[1] + 15}px` }}>[space] collect</p>
         </div>
       )

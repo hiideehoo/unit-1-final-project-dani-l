@@ -14,7 +14,6 @@ function FrontPage() {
             ABOUT
         </button>
     </Link>
-
     
     return (
         <div style={{textAlign: "center", marginTop: "112px", marginBottom: "180px"}}>
@@ -26,26 +25,26 @@ function FrontPage() {
                     <div className='tipsChild'>
                         <div className='tutorial' />
                         <p style={{marginLeft: "100px", fontSize: "40px"}}>&#8594; &#8594;</p>
-                        <p style={{marginTop: "80px"}}>[W][A][S][D]<br />to move</p>
+                        <p style={{top: "160px", left:"75px", position: "absolute"}}>[W][A][S][D]<br />to move</p>
                     </div>
                     <div className='tipsChild'>
                         <div className='tutorial' style={{marginLeft: "0px"}} />
                         <div className='tutorial' style={{backgroundColor: "orange", marginLeft: "120px"}} />
                         <p style={{fontSize: "40px"}}>!!</p>
-                        <p style={{marginTop: "80px"}}>[Space]<br />to interact</p>
+                        <p style={{top: "160px", left:"80px", position: "absolute"}}>[Space]<br />to interact</p>
                     </div>
                     <div className='tipsChild'>
-                        <div style={{backgroundColor: 'grey', width: '200px', height: '120px', display: "flex", alignItems: 'center'}}>
+                        <div style={{backgroundColor: 'rgb(101, 131, 156)', width: '200px', height: '120px', display: "flex", alignItems: 'center'}}>
                             <br />
                             <p style={{backgroundColor: 'white', width: '60px', height: '8px', margin: "24px", fontSize: "30px"}}>&#9645;</p>
                             <div style={{backgroundColor: 'cyan', width: '60px', height: '60px'}} />
                         </div>
-                        <p style={{marginTop: "45px"}}>[Escape]<br />to view profile</p>
+                        <p style={{top: "160px", left:"65px", position: "absolute"}}>[Escape]<br />to view profile</p>
                     </div>
                     <div className='tipsChild'>
                         <div className='tutorial' style={{transform: 'rotate(20deg)'}} />
                         <p style={{marginLeft: "120px", marginTop: "20px", fontSize: "100px", transform: 'rotate(155deg)'}}>&#8635;</p>
-                        <p style={{marginTop: "-75px"}}>[F]<br />to flip</p>
+                        <p style={{top: "160px", left:"95px", position: "absolute"}}>[F]<br />to flip</p>
                     </div>
                     
                 </section>
