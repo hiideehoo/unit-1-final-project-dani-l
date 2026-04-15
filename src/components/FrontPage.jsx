@@ -1,48 +1,24 @@
-import {useState} from 'react'
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
-import AboutPage from './AboutPage.jsx';
 
-function FrontPage({ setStartGame }) {
+function FrontPage() {
 
-    const [visitAbout, setVisitAbout] = useState("false");
-    const begin = <button className="frontButtons" id="begin" onClick={() => 
-        setStartGame("true")
-    }>BEGIN</button>
-    const about = <button className="frontButtons" id="about" onClick={() => 
-        setVisitAbout("true")
-    }>ABOUT</button>
-    const back = <button className="frontButtons" id="back" onClick={() => 
-        setVisitAbout("false")
-    }>BACK</button>
+    const begin = <a href="./game" rel="noopener noreferrer">
+        <button className="frontButtons" id="begin">
+            BEGIN
+        </button>
+    </a>
+    const about = <a href="./about" rel="noopener noreferrer">
+        <button className="frontButtons" id="again">
+            ABOUT
+        </button>
+    </a>
 
-
-    if (visitAbout === "true") {
-        return (
-            <div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <AboutPage back={back}/>
-                <Header />
-                <Footer />
-            </div>
-        )
-    }
+    
     return (
         <div style={{textAlign: "center"}}>
-            
 
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <section className='tipsParent' style={{textAlign: "center"}}>
+            <section className='tipsParent' style={{textAlign: "center", marginTop: "100px"}}>
                     
                     <div className='tipsChild'>
                         <div className='tutorial' />
