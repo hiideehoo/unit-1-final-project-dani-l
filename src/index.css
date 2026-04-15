@@ -1,12 +1,12 @@
 .room1 {
-  background-color: green;
+  background-color: indigo;
   position: absolute;
 }
 
 #profile {
   width: 520px;
   height: 520px;
-  background-color: gray;
+  background-color: rgb(101, 131, 156);
   padding: 10px;
   margin: 10px;
   position: absolute;

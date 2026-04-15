@@ -110,8 +110,8 @@ function App() {
 
   if (startGame === "true") {
     return (
-      <div className='gameParent'>
-        <section className='gameChild'>
+      <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <section style={{position: "relative", width: "560px", height: "560px", marginTop: "100px", backgroundColor: "rgb(224, 255, 246)"}}>
         <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[100,100]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
         <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[100, 400]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
         <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[440, 200]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>

@@ -21,14 +21,15 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
         style={{ position: "absolute", left: "100px" }}
       >
         <option value="cyan">Blue</option>
-        <option value="gold">Yellow</option>
         <option value="lawngreen">Green</option>
+        <option value="pink">Pink</option>
+        <option value="gold">Yellow</option>
       </select>
       <div 
         className="box" id="playerSprite" 
         style={{ 
           width: "80px", height: "80px", 
-          backgroundColor: colorChange, 
+          backgroundColor: colorChange, color: "black", 
           top: "40px", left: "350px", 
           fontSize: 60 - (nameChange.length * 6.5) 
         }}>

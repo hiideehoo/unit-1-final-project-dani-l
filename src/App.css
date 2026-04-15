@@ -1,13 +1,13 @@
-.parent {
+.tipsParent {
   display: flex;
   flex-wrap: wrap;
   gap: 10px
 }
 
-.child {
+.tipsChild {
   border-radius: 25px;
-  border: 8px solid green;
-  background-color: white;
+  border: 8px solid indigo;
+  background-color: rgb(224, 255, 246);
   padding: 20px;
   width: 200px;
   height: 200px;
@@ -15,24 +15,21 @@
 }
 
 
-/* Small devices such as large phones (640px and up) */
 @media only screen and (max-width: 640px) {
-    .parent {
+    .tipsParent {
         flex-direction:column;
     }
 }
 
-/* Medium devices such as tablets (768px and up) */
 @media only screen and (min-width: 640px) {
-    .parent {
+    .tipsParent {
         width: 600px;
         margin: auto;
     }
 }
 
-/* Large devices such as laptops (1024px and up) */
 @media only screen and (min-width: 1080px) {
-    .parent {
+    .tipsParent {
         width: 1064px
     }
 }
@@ -40,29 +37,23 @@
 * {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+body {
+    background-color: cadetblue;
+}
 
 .fixed-header, .fixed-footer{
     width: 101%;
     position: fixed;        
     background: grey;
-    padding: 20px 0;
     color: white;
     text-align: center;
     margin-left: -10px;
 }
 .fixed-header{
     top: 0;
+    padding: 25px 0;
 }
 .fixed-footer{
     bottom: 0;
-}
-
-.gameParent {
-    display: flex;
-    align-items: center;
-}
-
-.gameChild {
-    width: 600px;
-    height: 600px;
+    padding: 15px 0;
 }

@@ -53,7 +53,7 @@ const [entityVis, setEntityVis] = useState("visible");
     if (inRange) {
       return (
         <div>
-          <p style={{ position: "absolute", left: `${npcs[entity].coords[0] - 6}px`, top: `${npcs[entity].coords[1] + 40}px` }}>[space] talk</p>
+          <p style={{ position: "absolute", left: `${npcs[entity].coords[0] - 10}px`, top: `${npcs[entity].coords[1] + 40}px` }}>[space] talk</p>
         </div>
       )
     }
