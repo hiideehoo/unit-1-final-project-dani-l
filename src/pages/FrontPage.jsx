@@ -4,12 +4,12 @@ import Footer from '../components/Footer.jsx';
 function FrontPage() {
 
     const begin = <a href="./game" rel="noopener noreferrer">
-        <button className="frontButtons" id="begin">
+        <button className="buttons" id="begin">
             BEGIN
         </button>
     </a>
     const about = <a href="./about" rel="noopener noreferrer">
-        <button className="frontButtons" id="again">
+        <button className="buttons" id="again">
             ABOUT
         </button>
     </a>

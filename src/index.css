@@ -70,7 +70,7 @@
   box-shadow: 0 1px 1px rgba(0,0,0,0.9);
 }
 
-.frontButtons {
+.buttons {
   font-family: "Open Sans", sans-serif;
   font-size: 28px;
   letter-spacing: 2px;
@@ -88,14 +88,14 @@
   width: 300px;
 }
 
-.frontButtons:active {
+.buttons:active {
   box-shadow: 0px 0px 0px 0px;
   top: 5px;
   left: 5px;
 }
 
 @media (min-width: 768px) {
-  .frontButtons {
+  .buttons {
     padding: 0.25em 0.75em;
   }
 }
@@ -149,28 +149,3 @@
     translate: -20px 0;
   }
 }
-
-a {
-        position: relative;
-    }
-
-    a::after {
-        content: attr(title);
-        position: absolute;
-        background-color: #000;
-        color: #fff;
-        padding: 5px;
-        border-radius: 5px;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-    }
-
-    a:hover::after {
-        opacity: 1;
-        visibility: visible;
-    }

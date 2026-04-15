@@ -56,9 +56,9 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
                 >
                 <tbody>
                   <tr>
-                    <th><a title="HP stands for how many Hit Points you have left.">HP</a></th>
-                    <th><a title="DMG stands for the Damage you deal.">DMG</a></th>
-                    <th><a title="Silver is your currency.">Silver</a></th>
+                    <th><a title="HP stands for how many Hit Points you have left." style={{ cursor: "pointer" }}>HP</a></th>
+                    <th><a title="DMG stands for the Damage you deal." style={{ cursor: "pointer" }}>DMG</a></th>
+                    <th><a title="Silver is your currency." style={{ cursor: "pointer" }}>Silver</a></th>
                   </tr>
                   <tr>
                     <td>{hpStatus}</td>

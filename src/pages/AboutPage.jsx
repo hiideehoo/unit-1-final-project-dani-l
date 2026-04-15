@@ -4,7 +4,7 @@ import Footer from '../components/Footer.jsx';
 function AboutPage() {
 
     const back = <a href="./" rel="noopener noreferrer">
-        <button className="frontButtons" id="back">
+        <button className="buttons" id="back">
             BACK
         </button>
     </a>
