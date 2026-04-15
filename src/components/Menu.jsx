@@ -38,30 +38,27 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
           style={{ 
             width: "80px", height: "80px", 
             backgroundColor: colorChange, color: "black", 
-            top: "40px", left: "350px", 
-            fontSize: 60 - (nameChange.length * 6.5) 
+            top: "70px", left: "350px", 
+            fontSize: 50 - (nameChange.length * 4.5) 
           }}>
             {nameChange}
         </div>
         <br />
         <br />
         <br />
-        <br />
         <hr width="100%" size="2" />
           <div>
               <h3>Stats</h3>
-              <table 
-                  onMouseEnter={() => setIsShown(true)}
-                  onMouseLeave={() => setIsShown(false)}
+              <table
                   border="1" style={{  
                     textAlign: "center", width: "80%", position: "absolute", left: "50px"
                   }}
                 >
                 <tbody>
                   <tr>
-                    <th>HP</th>
-                    <th>DMG</th>
-                    <th>Silver</th>
+                    <th><a title="HP stands for how many Hit Points you have left.">HP</a></th>
+                    <th><a title="DMG stands for the Damage you deal.">DMG</a></th>
+                    <th><a title="Silver is your currency.">Silver</a></th>
                   </tr>
                   <tr>
                     <td>{hpStatus}</td>
@@ -70,11 +67,6 @@ function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleCo
                   </tr>
                 </tbody>
               </table>
-              {isShown && (
-                <div>
-                  HP are hit points!
-                </div>
-              )}
           </div>
         <br />
         <br />

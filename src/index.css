@@ -150,31 +150,27 @@
   }
 }
 
-/* HTML: <div class="tooltip">This is a Speech Bubble with a solid coloration and with border radius </div> */
-.tooltip {
-  color: black;
-  font-size: 18px;
-  max-width: 28ch;
-  text-align: center;
-}
-.tooltip {
-  /* triangle dimension */
-  --b: 2em; /* base */
-  --h: 1em; /* height */
+a {
+        position: relative;
+    }
 
-  --p: 50%; /* triangle position (0%:top 100%:bottom) */
-  --r: 1.2em; /* the radius */
-  --c: white;
+    a::after {
+        content: attr(title);
+        position: absolute;
+        background-color: #000;
+        color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
 
-  padding: 1em;
-  border-radius: var(--r)/min(var(--r),var(--p) - var(--b)/2) var(--r) var(--r) min(var(--r),100% - var(--p) - var(--b)/2);
-  clip-path: polygon(0 100%,100% 100%,100% 0,0 0,
-    0 max(0%  ,var(--p) - var(--b)/2),
-    calc(-1*var(--h)) var(--p),
-    0 min(100%,var(--p) + var(--b)/2));
-  background: var(--c);
-  border-image: conic-gradient(var(--c) 0 0) fill 0/
-    calc(var(--p) - var(--b)/2) var(--r) calc(100% - var(--p) - var(--b)/2) 0/
-    0 0 0 var(--h);
-}
-
+    a:hover::after {
+        opacity: 1;
+        visibility: visible;
+    }
