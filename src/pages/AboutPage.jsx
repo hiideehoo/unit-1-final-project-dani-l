@@ -11,17 +11,17 @@ function AboutPage() {
     
     return (
         <div >
-        <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px", height: "865px", color: "white", marginTop: "112px"}}>
+        <section id="about">
             
-                <div><img src="../src/assets/aboutImg.jpg"></img></div>
-                <p style={{width: "450px", textAlign: "justify"}}>
+                <div style={{height: "288px"}}><img src="../src/assets/aboutImg.jpg"></img></div>
+                <p style={{width: "440px", textAlign: "justify"}}>
                     Hello! <br />
                     My name is Daniel Laney and I'm an aspiring game developer.<br /><br />
                     This website, while prompted by an in-class assignment, inspired me to develop a game engine using React jsx. It's simple, but I've learned a lot about game physics. I'm eager to transfer this knowledge through C++ and apply it through Unity.<br /><br />
                     {back}
                 </p>
                 <br />
-        </div>
+        </section>
             <Header />
             <Footer />
         </div>

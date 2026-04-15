@@ -54,6 +54,16 @@ body {
   margin: auto;
 }
 
+#about {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    height: 865px;
+    color: white;
+    margin-top: 112px;
+}
+
 
 @media (max-width: 640px) {
     .tipsParent {
@@ -61,13 +71,20 @@ body {
     }
 }
 
-@media (max-width: 732px) {
+@media (max-width: 750px) {
     .footer {
         flex-direction:column;
         gap: 0px;
     }
     body {
         height:max-content;
+    }
+    #about {
+        flex-direction:column;
+        gap: 0px;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 100px;
     }
 }
 
