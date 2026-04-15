@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import Map from './Map.jsx'
-import Menu from './/Menu.jsx'
-import ItemInteraction from './Item.jsx'
-import NpcInteraction from './Npc.jsx'
-import Dialogue from './Dialogue.jsx';
+import Map from '../components/Map.jsx'
+import Menu from '../components/Menu.jsx'
+import ItemInteraction from '../components/Item.jsx'
+import NpcInteraction from '../components/Npc.jsx'
+import Dialogue from '../components/Dialogue.jsx';
 
 function DemoBox() {
 
