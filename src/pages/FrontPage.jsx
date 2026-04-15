@@ -1,18 +1,19 @@
+import { Link } from "react-router-dom";
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
 function FrontPage() {
 
-    const begin = <a href="./game" rel="noopener noreferrer">
+    const begin = <Link to="/game" rel="noopener noreferrer">
         <button className="buttons" id="begin">
             BEGIN
         </button>
-    </a>
-    const about = <a href="./about" rel="noopener noreferrer">
+    </Link>
+    const about = <Link to="/about" rel="noopener noreferrer">
         <button className="buttons" id="again">
             ABOUT
         </button>
-    </a>
+    </Link>
 
     
     return (

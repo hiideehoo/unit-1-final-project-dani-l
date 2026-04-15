@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom";
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
 function AboutPage() {
 
-    const back = <a href="./" rel="noopener noreferrer">
+    const back = <Link to="/" rel="noopener noreferrer">
         <button className="buttons" id="back">
             BACK
         </button>
-    </a>
+    </Link>
     
     return (
         <div >
