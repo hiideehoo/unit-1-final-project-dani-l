@@ -4,7 +4,7 @@ function Footer() {
             <br />
             <br />
             <br />
-            <footer className="fixed-footer">
+            <footer className="footer">
                 contact meeeeeeeee
             </footer>
         </div>

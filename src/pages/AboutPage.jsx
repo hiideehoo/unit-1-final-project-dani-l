@@ -11,7 +11,7 @@ function AboutPage() {
     
     return (
         <div>
-            <section style={{textAlign: "center", marginTop: "100px"}}>
+            <section style={{textAlign: "center", marginTop: "112px"}}>
                 This is an RPG Demo Box!
                 <br />
                 {back}

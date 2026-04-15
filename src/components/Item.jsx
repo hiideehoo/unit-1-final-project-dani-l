@@ -53,7 +53,7 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
     if (inRange) {
       return (
         <div>
-          <p style={{ position: "absolute", left: `${location[0] - 35}px`, top: `${location[1] + 15}px` }}>[space] collect</p>
+          <p style={{ position: "absolute", left: `${location[0] - 40}px`, top: `${location[1] + 15}px` }}>[space] collect</p>
         </div>
       )
     }

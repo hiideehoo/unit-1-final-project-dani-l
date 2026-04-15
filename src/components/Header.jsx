@@ -1,7 +1,7 @@
 function Header() {
     return (
         <div>
-            <header className="fixed-header">
+            <header className="header">
                 RPG DEMO BOX
             </header>
         </div>
