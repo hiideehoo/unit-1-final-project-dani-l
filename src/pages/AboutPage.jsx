@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import aboutImg from "../assets/aboutImg.jpg";
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
@@ -14,7 +15,7 @@ function AboutPage() {
         <div >
         <section id="about">
             
-                <div style={{height: "288px"}}><img src="../src/assets/aboutImg.jpg"></img></div>
+                <div style={{height: "288px"}}><img src={aboutImg} alt="[Dan's profile picture.]"></img></div>
                 <p style={{width: "440px", textAlign: "justify"}}>
                     Hello! <br />
                     My name is Daniel Laney and I'm an aspiring game developer.<br /><br />
