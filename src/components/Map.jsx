@@ -2,7 +2,7 @@ function Map({ borderCollision }) {
 
     let bound1 = borderCollision.room1
 
-    return (
+    return ( // renders visuals for walls
         <div>
             <div id="westWall" className="room1" style={{ width: `${bound1.west.width}px`, height: `${bound1.west.height + 50}px`, left: `${bound1.west.x}px`, top: `${bound1.west.y}px` }} />
             <div id="eastWall" className="room1" style={{ width: `${bound1.east.width}px`, height: `${bound1.east.height + 50}px`, left: `${bound1.east.x + 50}px`, top: `${bound1.east.y}px` }} />

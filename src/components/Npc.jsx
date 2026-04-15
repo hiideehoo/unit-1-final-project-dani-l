@@ -18,14 +18,14 @@ const [entityVis, setEntityVis] = useState("visible");
     red: new Npc("Rowyn", "box", "red", [750, 750])
   }
 
-  const radius = ((((longitude - npcs[entity].coords[0]) ** 2) + ((latitude - npcs[entity].coords[1]) ** 2)) ** 0.5);
-  const inRange = (radius < 75) && (npcs[entity].vis === "visible");
 
-  function Update(entity) {
+  const inRange = (((((longitude - npcs[entity].coords[0]) ** 2) + ((latitude - npcs[entity].coords[1]) ** 2)) ** 0.5) < 75) && (npcs[entity].vis === "visible"); // Checks distance from entity
+
+  function Update(entity) { // Opens dialogue menu
     setConversation(npcs[entity].name);
     setShowDialogue("visible");
   }
-  function Placement({entity}) {
+  function Placement({entity}) { // places on map
     if (entityVis === "visible") {
       return (
         <div>
@@ -34,7 +34,7 @@ const [entityVis, setEntityVis] = useState("visible");
       )
     }
   }
-  function Prompt({ entity }) {
+  function Prompt({ entity }) { // displays prompt when near entity
     if (inRange) {
       return (
         <div>
@@ -46,7 +46,7 @@ const [entityVis, setEntityVis] = useState("visible");
 
   
 
-    const keyDown = (event) => {
+    const keyDown = (event) => { // space input to interact
     if (inRange) {
       if (event.key === " ") {
         return (

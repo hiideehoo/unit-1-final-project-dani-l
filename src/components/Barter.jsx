@@ -12,7 +12,7 @@ function Barter({showDialogue, setShowDialogue, invStatus, setInvStatus}) {
         setShowDialogue("hidden")
     }>Okay</button>
 
-    return (
+    return ( // displays inventories when opened
         <div>
             <div className="backdrop" style={{ visibility: showDialogue }} />
             <section 

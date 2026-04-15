@@ -3,7 +3,7 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
 function FrontPage() {
-
+// buttons to move between pages
     const begin = <Link to="/game" rel="noopener noreferrer">
         <button className="buttons" id="begin">
             BEGIN
@@ -15,7 +15,7 @@ function FrontPage() {
         </button>
     </Link>
     
-    return (
+    return ( // displays the tips in a flexbox
         <div style={{textAlign: "center", marginTop: "112px", marginBottom: "180px"}}>
             
             <h3 style={{fontFamily: 'Rockwell', color: "white"}}>You are a box that must defeat Rowyn the Red.<br/>To do so, you must get help from Harold the Orange.</h3>

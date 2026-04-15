@@ -21,11 +21,11 @@ function DemoBox() {
     const [conversation, setConversation] = useState("");
     const [showDialogue, setShowDialogue] = useState("hidden");
 
-    const keyDown = (event) => {
+    const keyDown = (event) => { // Looks for key input
 
-        if (showProfile === "hidden" && showDialogue === "hidden") {
-            if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude <= borderCollision.room1.south.y - 20) {
-                setAnimationChange("moveDown .033s linear 1");
+        if (showProfile === "hidden" && showDialogue === "hidden") { // Prevents movement during menu navigation
+            if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude <= borderCollision.room1.south.y - 20) { // Checks wall boundaries
+                setAnimationChange("moveDown .033s linear 1"); // Animates movement for smoothness
                 if ((event.key.toUpperCase() === "S" || event.key === "ArrowDown") && latitude < borderCollision.room1.south.y) {
                     setTimeout(() => {setAnimationChange(null); setLatitude(prev => prev + 20)}, 32);
                 }
@@ -50,14 +50,14 @@ function DemoBox() {
             }
         }
 
-        if (event.key === "Escape") {
+        if (event.key === "Escape") { // Opens profile
             setShowProfile(prev =>
                 prev === "hidden" ? "visible" : "hidden"
             );
         }
     };
 
-    useEffect(() => {
+    useEffect(() => { // Window always listening for keyboard inputs
         window.addEventListener('keydown', keyDown);
 
         return (() => {
