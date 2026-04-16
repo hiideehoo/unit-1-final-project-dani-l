@@ -2,9 +2,6 @@ import { useState } from 'react';
 
 function Menu({ showProfile, nameChange, colorChange, handleNameChange, handleColorChange, hpStatus, dmgStatus, silverStatus, invStatus }) {
 
-
-
-
   return (
     <div>
 

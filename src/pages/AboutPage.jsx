@@ -13,7 +13,7 @@ function AboutPage() {
     
     return (
         <div >
-        <section id="about">
+            <section id="about">
             
                 <div style={{height: "288px"}}><img src={aboutImg} alt="[Dan's profile picture.]"></img></div>
                 <p style={{width: "375px", textAlign: "justify"}}>
@@ -23,9 +23,10 @@ function AboutPage() {
                     {back}
                 </p>
                 <br />
-        </section>
-            <Header />
+            </section>
+
             <Footer />
+            <Header />
         </div>
         
     )
