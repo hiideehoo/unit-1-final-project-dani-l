@@ -16,7 +16,14 @@ function FrontPage() {
     </Link>
     
     return ( // displays the tips in a flexbox
-        <div style={{textAlign: "center", marginTop: "112px", marginBottom: "180px"}}>
+        <div id="front" style={{textAlign: "center"}}>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             
             <h3 style={{fontFamily: 'Rockwell', color: "white"}}>You are a box that must defeat Rowyn the Red.<br/>To do so, you must get help from Harold the Orange.</h3>
             
@@ -57,9 +64,18 @@ function FrontPage() {
             <br />
             <br />
             <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             
-            <Header />
             <Footer />
+            <Header />
         </div>
     )
 }

@@ -58,8 +58,10 @@
   border-radius: 25px;
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: left;
   align-items: normal;
+  gap: 0;
 }
 
 .backdrop {

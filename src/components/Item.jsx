@@ -1,19 +1,6 @@
 import { useState, useEffect } from 'react';
-class Item {
-  constructor(name, className, value, vis, opacity, coords) {
-    this.name = name;
-    this.className = className;
-    this.value = value;
-    this.vis = vis;
-    this.opacity = opacity;
-    this.coords = coords;
-  }
-}
-let items = {
-  orange: new Item("orange", "dot", 100, "", "", [])
-}
 
-function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, setDmgStatus, setInvStatus }) {
+function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, setDmgStatus, setInvStatus, items }) {
 
   const [entityVis, setEntityVis] = useState("visible");
   const [entityOpacity, setEntityOpacity] = useState("0");

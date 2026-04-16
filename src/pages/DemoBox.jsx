@@ -6,6 +6,22 @@ import NpcInteraction from '../components/Npc.jsx';
 import Dialogue from '../components/Dialogue.jsx';
 import Warning from '../components/Warning.jsx';
 
+class Item {
+  constructor(name, className, value, vis, opacity, coords) {
+    this.name = name;
+    this.className = className;
+    this.value = value;
+    this.vis = vis;
+    this.opacity = opacity;
+    this.coords = coords;
+  }
+}
+let items = {
+  "orange": new Item("orange", "dot", 100, "", "", []),
+  "sword": new Item('sword', "", 150, "", "", []),
+  "shield": new Item('shield', "", 150, "", "", [])
+}
+
 function DemoBox() {
 
     const [latitude, setLatitude] = useState(40);
@@ -16,10 +32,11 @@ function DemoBox() {
     const [animationChange, setAnimationChange] = useState(null);
     const [hpStatus, setHpStatus] = useState(1);
     const [dmgStatus, setDmgStatus] = useState(1);
-    const [silverStatus, setSilverStatus] = useState(100);
+    const [silverStatus, setSilverStatus] = useState(0);
     const [invStatus, setInvStatus] = useState([]);
     const [conversation, setConversation] = useState("");
     const [showDialogue, setShowDialogue] = useState("hidden");
+    const [haroldInv, setHaroldInv] = useState(["shield", "sword"])
 
     const keyDown = (event) => { // Looks for key input
 
@@ -72,7 +89,17 @@ function DemoBox() {
         setColorChange(e.target.value);
     }
 
+    useEffect(() => {
+        if (invStatus.includes("shield")) {
+            setHpStatus(prev => prev = 5);
+        }
+    }, [invStatus]);
 
+    useEffect(() => {
+        if (invStatus.includes("sword")) {
+            setDmgStatus(prev => prev = 5);
+        }
+    }, [invStatus]);
 
     class Border {
         constructor(width, height, x, y) {
@@ -116,14 +143,14 @@ function DemoBox() {
     return (
         <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
             <section style={{position: "relative", width: "860px", height: "860px", marginTop: "50px", backgroundColor: "lightcyan"}}>
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[712,413]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[128, 673]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[542, 263]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus}/>
+                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[712,413]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus} items={items}/>
+                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[128, 673]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus} items={items}/>
+                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[542, 263]} setDmgStatus={setDmgStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus} items={items}/>
                 <NpcInteraction latitude={latitude} longitude={longitude} entity="orange" setShowDialogue={setShowDialogue} setConversation={setConversation} />
                 <NpcInteraction latitude={latitude} longitude={longitude} entity="red" setShowDialogue={setShowDialogue} setConversation={setConversation} />
                 <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />
                 <Map latitude={latitude} longitude={longitude} borderCollision={borderCollision}/>
-                <Dialogue showDialogue={showDialogue} setShowDialogue={setShowDialogue} conversation={conversation} setConversation={setConversation} invStatus={invStatus} setInvStatus={setInvStatus} />
+                <Dialogue showDialogue={showDialogue} setShowDialogue={setShowDialogue} conversation={conversation} setConversation={setConversation} invStatus={invStatus} setInvStatus={setInvStatus} haroldInv={haroldInv} setHaroldInv={setHaroldInv} items={items} setSilverStatus={setSilverStatus} silverStatus={silverStatus}/>
                 <Menu showProfile={showProfile} colorChange={colorChange} nameChange={nameChange} handleNameChange={handleNameChange} handleColorChange={handleColorChange} hpStatus={hpStatus} dmgStatus={dmgStatus} silverStatus={silverStatus} invStatus={invStatus}/>
                 <Warning />
             </section>
