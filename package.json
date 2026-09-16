@@ -29,6 +29,9 @@
   "dependencies": {
   
     
+  "bootstrap": "5.1",
+  
+    
   "cors": "^2.8.6",
   
     
@@ -38,10 +41,16 @@
   "react": "^19.2.4",
   
     
+  "react-cookie": "^4.1.1",
+  
+    
   "react-dom": "^19.2.4",
   
     
-  "react-router-dom": "^7.14.1",
+  "react-router-dom": "^7.18.4",
+  
+    
+  "reactstrap": "^8.10.0",
   
     
   "use-sound": "^5.0.0"
@@ -58,6 +67,9 @@
   
     
   "@types/react-dom": "^19.2.3",
+  
+    
+  "@types/react-router-dom": "^5.3.3",
   
     
   "@vitejs/plugin-react": "^6.0.0",
