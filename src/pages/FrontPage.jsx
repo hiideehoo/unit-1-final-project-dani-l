@@ -2,7 +2,26 @@ import { Link } from "react-router-dom";
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
+
+
 function FrontPage() {
+
+    const testFunction = () => {
+        fetch(`http://localhost:8080/characters`,
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    name: "Dan",
+                    color: "pink"
+                }),
+                headers: {
+                    "Content-type": "application/json",
+                },
+            })
+            .then((response) => response.json())
+            .then((json) => console.log(json));
+    }
+
 // buttons to move between pages
     const begin = <Link to="/game" rel="noopener noreferrer">
         <button className="buttons" id="begin">
@@ -14,6 +33,9 @@ function FrontPage() {
             ABOUT
         </button>
     </Link>
+    const misc = <button className="buttons" id="misc" onClick={testFunction}>
+            TEST
+        </button>
     
     return ( // displays the tips in a flexbox
         <div id="front" style={{textAlign: "center"}}>
@@ -63,6 +85,15 @@ function FrontPage() {
             {about}
             <br />
             <br />
+            {misc}
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <br />
             <br />
             <br />
@@ -74,7 +105,7 @@ function FrontPage() {
             <br />
             <br />
             
-            <Footer />
+            {/* <Footer /> */}
             <Header />
         </div>
     )
