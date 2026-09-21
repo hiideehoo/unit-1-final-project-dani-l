@@ -57,6 +57,26 @@ body {
   position: relative;
 }
 
+.saveParent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 10px
+}
+
+.saveChild {
+  border-radius: 25px;
+  border: 8px solid indigo;
+  background-color: lightcyan;
+  padding: 20px;
+  width: 200px;
+  height: 100px;
+  margin: auto;
+  position: relative;
+}
+
 #about {
     display: flex;
     flex-wrap: wrap;
