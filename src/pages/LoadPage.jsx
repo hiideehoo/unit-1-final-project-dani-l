@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
 function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }) {
 
     let [saveFilesList, setSaveFilesList] = useState([]);
+
+    const navigate = useNavigate();
+    const loadGame = () => {
+        navigate('/game');
+    }
 
     const pullCharacters = async () => {
         let response = await fetch(`http://localhost:8080/characters`);
@@ -19,6 +24,7 @@ function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }
         let response = await fetch(`http://localhost:8080/worlds/${worldId}`);
         let loadWorld = await response.json();
         setCurrentWorld(currentWorld = loadWorld);
+        loadGame();
     }
 
     const deleteCharacter = async (index) => {
@@ -57,7 +63,7 @@ function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }
                                 backgroundColor: `${saveFilesList[i].color}`, color: "black",
                                 fontSize: 50 - (saveFilesList[i].name.length * 4.5)
                             }}>{saveFilesList[i].name}</div>
-                            <Link to="/game" rel="noopener noreferrer"><b style={{top: "40px", left:"152px", position: "absolute", cursor: "pointer"}} onClick={() => loadCharacter(i)}><u>play</u></b></Link>
+                            <b style={{top: "40px", left:"152px", position: "absolute", cursor: "pointer"}} onClick={() => loadCharacter(i)}><u>play</u></b>
                             <br />
                             <a style={{top: "80px", left:"145px", position: "absolute", cursor: "pointer"}} onClick={() => deleteCharacter(i)}><b><u>delete</u></b></a>
                     </div>

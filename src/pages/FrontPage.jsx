@@ -13,7 +13,7 @@ function FrontPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld 
 
     const newCharacter = async () => {
         let character = {
-            name: '',
+            name: 'PC',
             color: 'cyan',
             x: 40,
             y: 40,
