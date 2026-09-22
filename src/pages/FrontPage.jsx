@@ -1,30 +1,55 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
 
-function FrontPage() {
+function FrontPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }) {
+
+    const navigate = useNavigate();
+    const newGame = () => {
+        navigate('/game');
+    }
 
     const newCharacter = async () => {
         let character = {
             name: '',
-            color: 'cyan'
+            color: 'cyan',
+            x: 40,
+            y: 40,
+            silver: 0,
+            inv: []
         };
 
-        let response = await fetch('http://localhost:8080/characters', {
+        let responseChar = await fetch('http://localhost:8080/characters', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(character)
         });
+        let newCharacter = await responseChar.json();
+        setCurrentSave(currentSave = newCharacter);
+
+        let world = {
+            itemRender: true,
+            invHarold: ['sword', 'shield']
+        };
+
+        let responseWorld = await fetch('http://localhost:8080/worlds', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(world)
+        });
+        let newWorld = await responseWorld.json();
+        setCurrentWorld(currentWorld = newWorld);
+
+        newGame()
+
     }
 
 // buttons to move between pages
-    const begin = <Link to="/game" rel="noopener noreferrer">
-        <button className="buttons" id="begin" onClick={() => newCharacter()}>
+    const begin =<button className="buttons" id="begin" onClick={() => newCharacter()}>
             BEGIN
         </button>
-    </Link>
     const load = <Link to="/load" rel="noopener noreferrer">
         <button className="buttons" id="load">
             LOAD
@@ -38,7 +63,7 @@ function FrontPage() {
     
     return ( // displays the tips in a flexbox
         <div id="front" style={{textAlign: "center"}}>
-            <Footer />
+            
             <br />
             <br />
             <br />
@@ -102,6 +127,7 @@ function FrontPage() {
             <br />
             <br />
             <br />
+            <Footer />
             <Header />
         </div>
     )

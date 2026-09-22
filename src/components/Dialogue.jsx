@@ -8,7 +8,7 @@ import Rowyn1 from './DialogLines/Rowyn1';
 import FightWin from './DialogLines/FightWin';
 import FightLose from './DialogLines/FightLose';
 
-function Dialogue({ showDialogue, setShowDialogue, conversation, setConversation, invStatus, setInvStatus, haroldInv, setHaroldInv, items, setSilverStatus, silverStatus }) {
+function Dialogue({ showDialogue, setShowDialogue, conversation, setConversation, invStatus, setInvStatus, haroldInv, setHaroldInv, items, setSilverStatus, silverStatus, currentSave, currentWorld, updateCharacter, updateWorld }) {
 
     if (conversation === "Harold") { // Opens from selected NPC interaction
         return (
@@ -37,7 +37,7 @@ function Dialogue({ showDialogue, setShowDialogue, conversation, setConversation
     if (conversation === "barter") {
         return (
             <div>
-                <Barter showDialogue={showDialogue} setShowDialogue={setShowDialogue} invStatus={invStatus} setInvStatus={setInvStatus} haroldInv={haroldInv} setHaroldInv={setHaroldInv} items={items} setSilverStatus={setSilverStatus} silverStatus={silverStatus}/>
+                <Barter showDialogue={showDialogue} setShowDialogue={setShowDialogue} invStatus={invStatus} setInvStatus={setInvStatus} haroldInv={haroldInv} setHaroldInv={setHaroldInv} items={items} setSilverStatus={setSilverStatus} silverStatus={silverStatus} currentSave={currentSave} currentWorld={currentWorld} updateCharacter={updateCharacter} updateWorld={updateWorld}/>
             </div>
         )
     }

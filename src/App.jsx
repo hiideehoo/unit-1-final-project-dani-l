@@ -8,15 +8,17 @@ import './App.css'
 
 function App() {
 
-  const [saveFilesList, setSaveFilesList] = useState([]);
+
+  const [currentSave, setCurrentSave] = useState();
+  const [currentWorld, setCurrentWorld] = useState();
 
   return (
     <Router>
         <Routes>
-            <Route exact path="/" element={<FrontPage />} />
+            <Route exact path="/" element={<FrontPage currentSave={currentSave} setCurrentSave={setCurrentSave} currentWorld={currentWorld} setCurrentWorld={setCurrentWorld}/>} />
             <Route exact path="/about" element={<AboutPage />} />
-            <Route exact path="/load" element={<LoadPage saveFilesList={saveFilesList} setSaveFilesList={setSaveFilesList}/>} />
-            <Route exact path="/game" element={<DemoBox />} />
+            <Route exact path="/load" element={<LoadPage currentSave={currentSave} setCurrentSave={setCurrentSave} currentWorld={currentWorld} setCurrentWorld={setCurrentWorld} />} />
+            <Route exact path="/game" element={<DemoBox currentSave={currentSave} setCurrentSave={setCurrentSave} currentWorld={currentWorld} setCurrentWorld={setCurrentWorld}/>} />
         </Routes>
     </Router>
   )
