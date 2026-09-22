@@ -200,11 +200,7 @@ function DemoBox({ currentSave, setCurrentSave, currentWorld, setCurrentWorld })
     return (
         <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
             <section style={{position: "relative", width: "860px", height: "860px", marginTop: "50px", backgroundColor: "lightcyan"}}>
-                {/* <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[712,413]} setDmgStatus={setDmgStatus} invStatus={invStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus} items={items} currentSave={currentSave} updateCharacter={updateCharacter}/>
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[128, 673]} setDmgStatus={setDmgStatus} invStatus={invStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus} items={items} currentSave={currentSave} updateCharacter={updateCharacter}/>
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[542, 263]} setDmgStatus={setDmgStatus} invStatus={invStatus} setInvStatus={setInvStatus} setHpStatus={setHpStatus} items={items} currentSave={currentSave} updateCharacter={updateCharacter}/> */}
-
-                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[400,400]} invStatus={invStatus} setInvStatus={setInvStatus} items={items} currentSave={currentSave} currentWorld={currentWorld} updateCharacter={updateCharacter} updateWorld={updateWorld}/>
+                <ItemInteraction latitude={latitude} longitude={longitude} entity="orange" location={[213,589]} invStatus={invStatus} setInvStatus={setInvStatus} items={items} currentSave={currentSave} currentWorld={currentWorld} updateCharacter={updateCharacter} updateWorld={updateWorld}/>
                 <NpcInteraction latitude={latitude} longitude={longitude} entity="orange" setShowDialogue={setShowDialogue} setConversation={setConversation} />
                 <NpcInteraction latitude={latitude} longitude={longitude} entity="red" setShowDialogue={setShowDialogue} setConversation={setConversation} />
                 <player.Player latitude={latitude} longitude={longitude} nameChange={nameChange} colorChange={colorChange} />

@@ -18,7 +18,7 @@ function Harold3( {showDialogue, setShowDialogue, setConversation} ) {
                 className="profile" id="dialogueBox"
                 style={{ visibility: showDialogue }}>
 
-                <div className="dialogueResponse">I can smell a few oranges lying around, if you can find them.</div>
+                <div className="dialogueResponse">I can smell a really big orange lying around, if you can find it.</div>
                 <div className="dialogue">{sure}</div>
                 <div className="dialogue">{nah}</div>
                 <div className="dialogue"></div>
