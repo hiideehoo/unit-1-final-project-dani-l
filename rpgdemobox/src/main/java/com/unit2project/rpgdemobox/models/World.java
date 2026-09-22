@@ -8,20 +8,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "characters")
+@Table(name = "worlds")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Character {
+public class World {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
-    private String color;
-    private Integer x;
-    private Integer y;
-    private Integer silver;
-    private String[] inv;
+    private Boolean itemRender;
+    private String[] invHarold;
 }

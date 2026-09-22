@@ -1,31 +1,58 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 
 
+function FrontPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }) {
 
-function FrontPage() {
+    const navigate = useNavigate();
+    const newGame = () => {
+        navigate('/game');
+    }
 
-    const testFunction = () => {
-        fetch(`http://localhost:8080/characters`,
-            {
-                method: "POST",
-                body: JSON.stringify({
-                    name: "Dan",
-                    color: "pink"
-                }),
-                headers: {
-                    "Content-type": "application/json",
-                },
-            })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+    const newCharacter = async () => {
+        let character = {
+            name: 'PC',
+            color: 'cyan',
+            x: 40,
+            y: 40,
+            silver: 0,
+            inv: []
+        };
+
+        let responseChar = await fetch('http://localhost:8080/characters', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(character)
+        });
+        let newCharacter = await responseChar.json();
+        setCurrentSave(currentSave = newCharacter);
+
+        let world = {
+            itemRender: true,
+            invHarold: ['sword', 'shield']
+        };
+
+        let responseWorld = await fetch('http://localhost:8080/worlds', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(world)
+        });
+        let newWorld = await responseWorld.json();
+        setCurrentWorld(currentWorld = newWorld);
+
+        newGame()
+
     }
 
 // buttons to move between pages
-    const begin = <Link to="/game" rel="noopener noreferrer">
-        <button className="buttons" id="begin">
+    const begin =<button className="buttons" id="begin" onClick={() => newCharacter()}>
             BEGIN
+        </button>
+    const load = <Link to="/load" rel="noopener noreferrer">
+        <button className="buttons" id="load">
+            LOAD
         </button>
     </Link>
     const about = <Link to="/about" rel="noopener noreferrer">
@@ -33,12 +60,10 @@ function FrontPage() {
             ABOUT
         </button>
     </Link>
-    const misc = <button className="buttons" id="misc" onClick={testFunction}>
-            TEST
-        </button>
     
     return ( // displays the tips in a flexbox
         <div id="front" style={{textAlign: "center"}}>
+            
             <br />
             <br />
             <br />
@@ -82,10 +107,12 @@ function FrontPage() {
             {begin}
             <br />
             <br />
+            {load}
+            <br />
+            <br />
             {about}
             <br />
             <br />
-            {misc}
             <br />
             <br />
             <br />
@@ -100,12 +127,7 @@ function FrontPage() {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            
-            {/* <Footer /> */}
+            <Footer />
             <Header />
         </div>
     )

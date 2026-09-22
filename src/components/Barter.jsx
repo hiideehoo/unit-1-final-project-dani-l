@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Barter({showDialogue, setShowDialogue, invStatus, setInvStatus, haroldInv, setHaroldInv, items, setSilverStatus, silverStatus}) {
+function Barter({showDialogue, setShowDialogue, invStatus, setInvStatus, haroldInv, setHaroldInv, items, setSilverStatus, silverStatus, currentSave, currentWorld, updateCharacter, updateWorld}) {
 
     function gainItem(item) {
         if (silverStatus >= items[item].value) {
@@ -24,12 +24,18 @@ function Barter({showDialogue, setShowDialogue, invStatus, setInvStatus, haroldI
             return copy;
         });
 
-    setHaroldInv(prev => [...prev, item]);
-    setSilverStatus(prev => prev + items[item].value);
+        setHaroldInv(prev => [...prev, item]);
+        setSilverStatus(prev => prev + items[item].value);
+    }
+
+    const finalTrade = () => {
+        updateCharacter(currentSave.name, currentSave.color, currentSave.x, currentSave.y, silverStatus, invStatus);
+        updateWorld(currentWorld.itemRender, haroldInv);
+        setShowDialogue("hidden")
     }
 
     const goodbye = <button className="buttons" onClick={() => 
-        setShowDialogue("hidden")
+        finalTrade()
     }>Okay</button>
 
     return ( // displays inventories when opened

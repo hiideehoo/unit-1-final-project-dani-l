@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 
-function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, setDmgStatus, setInvStatus, items }) {
+function ItemInteraction({ latitude, longitude, entity, location, invStatus, setInvStatus, items, currentSave, currentWorld, updateCharacter, updateWorld }) {
 
-  const [entityVis, setEntityVis] = useState("visible");
+  let [entityRender, setEntityRender] = useState(currentWorld.itemRender);
   const [entityOpacity, setEntityOpacity] = useState("0");
-  items[entity].vis = entityVis;
   items[entity].opacity = entityOpacity;
-  const inRange = (((((longitude - location[0]) ** 2) + ((latitude - location[1]) ** 2)) ** 0.5) < 67) && (items[entity].vis === "visible"); // Checks distance from entity
+  const inRange = (((((longitude - location[0]) ** 2) + ((latitude - location[1]) ** 2)) ** 0.5) < 130) && (entityRender === true); // Checks distance from entity
 
   const keyDown = (event) => { // space input to interact
     if (inRange) {
       if (event.key === " ") {
-        setEntityVis(prev => prev === "hidden");
-        setInvStatus(prev => [...prev, entity]);
+        setEntityRender(entityRender = false);
+        let updateInv = [...invStatus, entity];
+        setInvStatus(invStatus = updateInv);
+        updateCharacter(currentSave.name, currentSave.color, currentSave.x, currentSave.y, currentSave.silver, updateInv);
+        updateWorld(false, currentWorld.invHarold);
       }
     }
   }
@@ -32,10 +34,10 @@ function ItemInteraction({ latitude, longitude, entity, location, setHpStatus, s
   })
 
   function Placement({entity}) { // places entity on the map
-    if (entityVis === "visible") {
+    if (entityRender === true) {
       return (
         <div>
-          <div className={items[entity].className} style={{ visibility: entityVis, opacity: entityOpacity, left: `${location[0]}px`, top: `${location[1]}px` }} />
+          <div className={items[entity].className} style={{ opacity: entityOpacity, left: `${location[0]}px`, top: `${location[1]}px` }} />
         </div>
       )
     }

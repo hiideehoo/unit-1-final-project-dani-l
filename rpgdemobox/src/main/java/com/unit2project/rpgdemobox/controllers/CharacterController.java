@@ -38,6 +38,10 @@ public class CharacterController {
         return characterRepository.findById(id).map(character -> {
             character.setName(updatedCharacter.getName());
             character.setColor(updatedCharacter.getColor());
+            character.setX(updatedCharacter.getX());
+            character.setY(updatedCharacter.getY());
+            character.setSilver(updatedCharacter.getSilver());
+            character.setInv(updatedCharacter.getInv());
             return characterRepository.save(character);
         }).orElse(null);
     }
