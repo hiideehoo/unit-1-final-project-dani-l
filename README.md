@@ -1,16 +1,6 @@
-# React + Vite
+RPG Demo Box is a browser-based video game developed to test my skills in player customization, inventory management, branching dialogue, map exploration, and progression saving. I hope this short demonstration proves to be entertaining for anyone who gives it a go!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This app was developed using Vite + React with a MySQL Server integrated. In its current state, the app will not work on computers without direct access to my server. This will need to be patched in future updates.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![Er Diagram](src/assets/ER_Diagram.png)
+https://docs.google.com/presentation/d/1olnhaBU4qOHSf9Cu1OGqw1VmE0fFsE-tGIV_kSW8CDg/edit?usp=sharing
