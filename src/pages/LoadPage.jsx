@@ -20,7 +20,7 @@ function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }
 
     const loadCharacter = async (index) => { // sets data for resuming gameplay
         setCurrentSave(currentSave = saveFilesList[index]);
-        let worldId = (currentSave.id - 111);
+        let worldId = (currentSave.id - 112);
         let response = await fetch(`http://localhost:8080/worlds/${worldId}`);
         let loadWorld = await response.json();
         setCurrentWorld(currentWorld = loadWorld);
@@ -34,7 +34,7 @@ function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }
         });
         pullCharacters();
 
-        let worldId = (saveFilesList[index].id - 111);
+        let worldId = (saveFilesList[index].id - 112);
         let response2 = await fetch(`http://localhost:8080/worlds/${worldId}`, {
             method: 'DELETE'
         });
