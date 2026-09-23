@@ -5,7 +5,7 @@ function ItemInteraction({ latitude, longitude, entity, location, invStatus, set
   let [entityRender, setEntityRender] = useState(currentWorld.itemRender);
   const [entityOpacity, setEntityOpacity] = useState("0");
   items[entity].opacity = entityOpacity;
-  const inRange = (((((longitude - location[0]) ** 2) + ((latitude - location[1]) ** 2)) ** 0.5) < 130) && (entityRender === true); // Checks distance from entity
+  const inRange = (((((longitude - location[0]) ** 2) + ((latitude - location[1]) ** 2)) ** 0.5) < 75) && (entityRender === true); // Checks distance from entity
 
   const keyDown = (event) => { // space input to interact
     if (inRange) {

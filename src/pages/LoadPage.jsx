@@ -12,13 +12,13 @@ function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }
         navigate('/game');
     }
 
-    const pullCharacters = async () => {
+    const pullCharacters = async () => { // creates array of character data
         let response = await fetch(`http://localhost:8080/characters`);
         let saveFiles = await response.json();
         setSaveFilesList(saveFilesList = saveFiles);
     }
 
-    const loadCharacter = async (index) => {
+    const loadCharacter = async (index) => { // sets data for resuming gameplay
         setCurrentSave(currentSave = saveFilesList[index]);
         let worldId = (currentSave.id - 111);
         let response = await fetch(`http://localhost:8080/worlds/${worldId}`);
@@ -27,7 +27,7 @@ function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }
         loadGame();
     }
 
-    const deleteCharacter = async (index) => {
+    const deleteCharacter = async (index) => { // deletes data from server
         let id = saveFilesList[index].id;
         let response = await fetch(`http://localhost:8080/characters/${id}`, {
             method: 'DELETE'
@@ -50,7 +50,7 @@ function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }
         </button>
     </Link>
 
-    const saveFiles = () => {
+    const saveFiles = () => { // lists character saves in HTML
 
         let batch = [];
             for(let i = 0; i < saveFilesList.length; i++) {
@@ -59,13 +59,13 @@ function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }
                         <div // player preview
                             className="box" id="playerSprite"
                             style={{
-                                width: "80px", height: "80px",
+                                width: "80px", height: "80px", left: "35px",
                                 backgroundColor: `${saveFilesList[i].color}`, color: "black",
                                 fontSize: 50 - (saveFilesList[i].name.length * 4.5)
                             }}>{saveFilesList[i].name}</div>
-                            <b style={{top: "40px", left:"152px", position: "absolute", cursor: "pointer"}} onClick={() => loadCharacter(i)}><u>play</u></b>
+                            <b style={{top: "40px", left:"172px", position: "absolute", cursor: "pointer"}} onClick={() => loadCharacter(i)}><u>play</u></b>
                             <br />
-                            <a style={{top: "80px", left:"145px", position: "absolute", cursor: "pointer"}} onClick={() => deleteCharacter(i)}><b><u>delete</u></b></a>
+                            <a style={{top: "80px", left:"165px", position: "absolute", cursor: "pointer"}} onClick={() => deleteCharacter(i)}><b><u>delete</u></b></a>
                     </div>
                 );
             }
@@ -88,9 +88,6 @@ function LoadPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }
             <br />
             <br />
             {saveFiles()}
-            <br />
-            <br />
-            <br />
             <br />
             <br />
             <br />

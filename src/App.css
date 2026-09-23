@@ -63,7 +63,10 @@ body {
   justify-content: center;
   align-items: center;
   column-gap: 10px;
-  row-gap: 10px
+  row-gap: 10px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .saveChild {
@@ -71,7 +74,7 @@ body {
   border: 8px solid indigo;
   background-color: lightcyan;
   padding: 20px;
-  width: 200px;
+  width: 250px;
   height: 100px;
   margin: auto;
   position: relative;

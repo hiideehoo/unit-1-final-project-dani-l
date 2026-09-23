@@ -11,7 +11,7 @@ import Warning from '../components/Warning.jsx';
 function DemoBox({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }) {
 
 
-    const updateCharacter = async (name, color, x, y, silver, inv) => {
+    const updateCharacter = async (name, color, x, y, silver, inv) => { // updates character data to save progression and changes
 
         let id = currentSave.id;
         let newName = name;
@@ -40,7 +40,7 @@ function DemoBox({ currentSave, setCurrentSave, currentWorld, setCurrentWorld })
 
     }
 
-    const updateWorld = async (itemRender, invHarold) => {
+    const updateWorld = async (itemRender, invHarold) => { // updates world save upon changes
 
         let id = currentWorld.id;
         let newItemRender = itemRender;

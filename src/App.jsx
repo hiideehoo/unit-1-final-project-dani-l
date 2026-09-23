@@ -8,7 +8,7 @@ import './App.css'
 
 function App() {
 
-
+// manages save data between pages for new and resumed characters
   const [currentSave, setCurrentSave] = useState();
   const [currentWorld, setCurrentWorld] = useState();
 

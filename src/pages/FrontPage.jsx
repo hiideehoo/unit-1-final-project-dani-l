@@ -6,12 +6,12 @@ import Footer from '../components/Footer.jsx';
 
 function FrontPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld }) {
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // page router function
     const newGame = () => {
         navigate('/game');
     }
 
-    const newCharacter = async () => {
+    const newCharacter = async () => { // creates character on new game
         let character = {
             name: 'PC',
             color: 'cyan',
@@ -29,7 +29,7 @@ function FrontPage({ currentSave, setCurrentSave, currentWorld, setCurrentWorld 
         let newCharacter = await responseChar.json();
         setCurrentSave(currentSave = newCharacter);
 
-        let world = {
+        let world = { // creates world on new game
             itemRender: true,
             invHarold: ['sword', 'shield']
         };
